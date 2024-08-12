@@ -17,4 +17,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_100706) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
