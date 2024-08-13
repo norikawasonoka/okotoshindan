@@ -1,3 +1,5 @@
 class Question < ApplicationRecord
-  validates :question_title, presence: true
+  validates :title, presence: true
+
+  has_many :question_points, dependent: :destroy
 end
