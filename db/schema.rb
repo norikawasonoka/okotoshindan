@@ -10,22 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_13_142959) do
-  create_table "question_points", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "answer", null: false
-    t.integer "point", null: false
-    t.bigint "question_id", null: false
-    t.bigint "result_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_question_points_on_question_id"
-    t.index ["result_id"], name: "index_question_points_on_result_id"
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2024_08_14_032916) do
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions_results", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "result_id", null: false
+    t.index ["question_id", "result_id"], name: "index_questions_results_on_question_id_and_result_id"
+    t.index ["result_id", "question_id"], name: "index_questions_results_on_result_id_and_question_id"
   end
 
   create_table "results", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -35,6 +31,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_13_142959) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "question_points", "questions"
-  add_foreign_key "question_points", "results"
 end

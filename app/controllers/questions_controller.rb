@@ -9,74 +9,114 @@ class QuestionsController < ApplicationController
 
   def create
     if params[:questions].present?
-      # 最初の質問に対する処理
-      case params[:questions][:first_question]
+      first_question = params[:questions][:first_question]
+  
+      case first_question
       when "ことの音楽"
-        session[:next_question] = "定番" # 次の質問を「定番」に設定
-        flash[:notice] = "次の質問は「定番」です。"
-        redirect_to action: "next_question" # 次の質問へリダイレクト
-      else
-        flash[:alert] = "無効な選択です"
-        redirect_to action: "index"
+        if some_condition
+          session[:next_question] = "定番"
+        elsif another_condition
+          session[:next_question] = "定番のアレンジ"
+        else
+          session[:next_question] = "オリジナル"
+        end
+  
+      when "ポップス"
+        if condition
+          session[:next_question] = "激しめ"
+        else
+          session[:next_question] = "きれい"
+        end
       end
-    else
-      flash[:alert] = "質問が送信されていません"
-      redirect_to action: "index"
+  
+      # Result を見つけるか、新しく作成
+      @result = Result.find_or_create_by(title: "Example Result", description: "Description of the example result")
+  
+      # Question の作成と関連付け
+      @question = Question.new(question_params)
+      @question.results << @result # 多対多の関連付け
+  
+      if @question.save
+        session[:result_id] = @result.id # 結果IDをセッションに保存
+        redirect_to action: "next_question"
+      else
+        # 保存に失敗した場合、適切なエラーハンドリング
+        render :index
+      end
     end
   end
   
+  
   def next_question
-    # セッションから次の質問を取得
     next_question = session[:next_question]
   
     case next_question
     when "定番"
       # 定番に関する処理
-      # ここで「ことの音楽→定番」を実装
-      session[:next_question] = "定番のアレンジ" # 次の質問を設定
-      flash[:notice] = "次の質問は「定番のアレンジ」です。"
-      redirect_to action: "next_question"
+      redirect_to action: "result"
     when "定番のアレンジ"
       # 定番のアレンジに関する処理
-      # ここで「ことの音楽→定番のアレンジ」を実装
-      session[:next_question] = "オリジナル" # 次の質問を設定
-      flash[:notice] = "次の質問は「オリジナル」です。"
-      redirect_to action: "next_question"
+      redirect_to action: "result"
     when "オリジナル"
       # オリジナルに関する処理
-      # ここで「ことの音楽→オリジナル」を実装
-      session[:next_question] = "激しめ" # 次の質問を設定
-      flash[:notice] = "次の質問は「激しめ」です。"
-      redirect_to action: "next_question"
+      if some_condition
+        session[:third_question] = "この音とまれ"
+      elsif another_condition
+        session[:third_question] = "激しめ"
+      else
+        session[:third_question] = "きれい"
+      end
+      # `next_question` が "オリジナル" の場合、処理が終わったらリダイレクト
+      redirect_to action: "result"
     when "激しめ"
       # 激しめに関する処理
-      # ここで「ことの音楽→オリジナル→激しめ」を実装
-      session[:next_question] = "きれい" # 次の質問を設定
-      flash[:notice] = "次の質問は「きれい」です。"
-      redirect_to action: "next_question"
+      redirect_to action: "result"
     when "きれい"
       # きれいに関する処理
-      # ここで「ことの音楽→きれい」を実装
-      flash[:notice] = "診断が完了しました"
-      redirect_to action: "result" # 結果ページへリダイレクト
-    else
-      flash[:alert] = "無効な選択です"
-      redirect_to action: "index"
+      redirect_to action: "result"
+    end
+      # `session[:next_question]` に該当しない場合のデフォルト処理
+      redirect_to action: "third_question" # 必要に応じて適切なアクションにリダイレクト
+    end
+  end
+
+  def third_question
+    third_question = session[:third_question]
+  
+    case third_question
+    when "この音とまれ"
+      # この音とまれに関する処理
+      # ここに具体的な処理を記述する
+      redirect_to action: "result"
+    when "激しめ"
+      # 激しめに関する処理
+      # ここに具体的な処理を記述する
+      redirect_to action: "result"
+    when "きれい"
+      # きれいに関する処理
+      # ここに具体的な処理を記述する
+      redirect_to action: "result"
+    end
+      # `session[:third_question]` に該当しない場合のデフォルト処理
+      # 必要に応じて適切なアクションにリダイレクト
+      redirect_to action: "index" # エラーページや適切なアクションを指定する
     end
   end
 
   def result
     your_result_id = session[:result_id]
+    
     if your_result_id
       @your_result = Result.find(your_result_id)
       session.delete(:result_id) # セッションから結果IDを削除
     else
-      redirect_to root_path, alert: "結果が見つかりません" # エラーメッセージ
+      redirect_to root_path, alert: "結果が見つかりません" # 結果が見つからない場合のエラーメッセージ
     end
   end
+
 private
 
   def question_params
-    params.require(:questions).permit(:id, :question_title)
+    params.require(:questions).permit(:id, :question_title) # 必要に応じてフィールドを調整
   end
 end
