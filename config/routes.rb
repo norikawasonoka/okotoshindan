@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   root "static_pages#top"
-  resources :questions, only: %i[index create show] do
+  resources :questions, only: %i[index show create] do
     collection do
-      get :result
-      get :next_question  # `next_question` アクションへのルート
-      get :third_question # `third_question` アクションへのルート
+      get 'result'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

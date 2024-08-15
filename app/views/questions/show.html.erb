@@ -1,0 +1,9 @@
+<%= form_with model: @question, local: true do |f| %>
+    <div class="col-6">
+      <p>
+        <%= f.check_box :question_ids, {}, @question.id, nil %>
+        <%= @question.title %>
+      </p>
+    </div>
+    <%= f.submit 'Submit' %>
+  <% end %>  

@@ -1,18 +1,41 @@
-<%= form_with(model: @question, class: 'form-horizontal', role: 'form') do |f| %>
-    <div class="container-sindan">
-        <div class="row">
-            <div class="col-12">
-                <p>Question1. お箏の曲</p>
-            </div>
-
-            <div class="sindanbotan">
-        <%= f.submit "お箏の曲" %>
+<%= form_with model: @model_name, local: true do |f| %>
+  <% @questions.each do |question| %>
+    <div class="col-6">
+      <p>
+        <%= f.check_box :question_ids, { multiple: true, id: "question_#{question.id}" }, question.id, nil %>
+        <%= question.title %>
+      </p>
     </div>
-            <div class="col-12">
-                <p>Question2. ポップス</p>
-            </div>
-    </div>
-    <div class="sindanbotan">
-        <%= f.submit "ポップス" %>
-    </div>
+  <% end %>
+  <%= f.submit 'Submit' %>
 <% end %>
+
+<div id="redirect-links" style="display: none;">
+  <a id="link1" href="/questions/3">Go to Question 3</a>
+  <a id="link2" href="/questions/4">Go to Question 4</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      // チェックボックスがチェックされた場合の処理
+      if (this.checked) {
+        // チェックされたチェックボックスのIDを取得
+        const questionId = this.value;
+
+        // リダイレクト先の設定
+        if (questionId === '1') {
+          document.getElementById('redirect-links').style.display = 'block';
+        } else {
+          // もし他のIDの場合は隠す
+          document.getElementById('redirect-links').style.display = 'none';
+        }
+      } else {
+        // チェックが外れた場合は隠す
+        document.getElementById('redirect-links').style.display = 'none';
+      }
+    });
+  });
+});
+</script>
