@@ -24,5 +24,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_103409) do
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_results_on_question_id"
   end
-
 end

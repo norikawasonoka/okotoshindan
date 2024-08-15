@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "static_pages#top"
-  resources :questions, only: %i[index show create] do
+  resources :questions, only: %i[index] do
     collection do
+      post 'calculate'
       get 'result'
     end
   end

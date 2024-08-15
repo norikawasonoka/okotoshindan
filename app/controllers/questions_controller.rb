@@ -3,60 +3,35 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
-  def show
-    @question = Question.find(params[:id].to_i)
-  end
-
-  def create
-    @question = Question.new(question_params)
-    
-    if @question.save
-      flash[:notice] = "質問が作成されました"
-      redirect_to questions_path
-    else
-      flash[:alert] = "質問の作成に失敗しました"
-      redirect_to questions_path
+  def calculate
+    answers = calculate_params.values
+    total_score = 0
+  
+    answers.each do |answer|
+      question_type, answer_value = answer.split("→") # 例えば "ことの曲→定番" の形式を想定している場合
+      if SCORES[question_type.to_sym] && SCORES[question_type.to_sym][answer_value]
+        total_score += SCORES[question_type.to_sym][answer_value]
+      end
     end
-  end
+  
+    session[:total_score] = total_score
+    redirect_to result_questions_path
+  end  
 
   def result
-    # ここでリダイレクト先の result_id を設定する
-    if params[:question_id].to_i == 3
-      session[:result_id] = 1
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 4
-      session[:result_id] = 2
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 8
-      session[:result_id] = 3
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 9
-      session[:result_id] = 4
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 10
-      session[:result_id] = 5
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 6
-      session[:result_id] = 6
-      redirect_to result_questions_path
-    elsif
-      params[:question_id].to_i == 7
-      session[:result_id] = 7
-      redirect_to result_questions_path
+    @total_score = session[:total_score]
+    if @total_score
+      @result = Result.find_by('score_range_start <= ? AND score_range_end >= ?', @total_score, @total_score)
+      session.delete(:total_score)
     else
-      flash[:alert] = "質問IDが無効です"
-      redirect_to questions_path
+      redirect_to root_path, danger: t('.fail')
     end
   end
 
   private
 
-  def question_params
-    params.require(:question).permit(:title)
+  def calculate_params
+    params.require(:calculate).permit(:answer_1, :answer_2, :answer_3, :answer_4, :answer_5, :answer_6, :answer_7)
   end
+  #受け取る回答の数が固定されているので、柔軟性を持たせるために、params[:calculate].permit!
 end

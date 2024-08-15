@@ -1,0 +1,13 @@
+<div class="container mx-auto text-center">
+  <h1 class="text-center text-4xl font-bold">診断結果</h1>
+  <p class="text-xl">あなたのスコアは: <%= @total_score %></p>
+  
+  <% if @result %>
+    <h2 class="text-2xl">結果: <%= @result.title %></h2>
+    <p><%= @result.description %></p>
+  <% else %>
+    <p>結果が見つかりませんでした。</p>
+  <% end %>
+  
+  <%= link_to 'ホームに戻る', root_path, class: 'btn btn-primary' %>
+</div>
