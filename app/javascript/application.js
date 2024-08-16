@@ -4,7 +4,21 @@ import "./controllers"
 
 document.addEventListener("DOMContentLoaded", () => {
     let currentQuestion = 1;
-    const totalQuestions = 10;
+    // 質問が入っているコンテナ（または質問のリスト）を取得
+    const questions = document.querySelectorAll('.question');
+
+    // 質問の数をtotalQuestionsに格納
+    const totalQuestions = questions.length;
+
+    console.log(`Total questions: ${totalQuestions}`);
+  
+    // 各質問ごとに次の質問を決定するロジック
+    const nextQuestions = {
+      "定番": "定番のアレンジ",
+      "オリジナル": ["この音とまれ", "激しい曲", "きれいな曲"],
+      "アップテンポ": null, // 最後の質問なので次はなし
+      "スローテンポ": null  // 最後の質問なので次はなし
+    };  
   
     const startButton = document.getElementById('start-questions');
     const startDescription = document.getElementById('start-description');

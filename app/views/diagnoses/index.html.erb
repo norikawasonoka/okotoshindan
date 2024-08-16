@@ -1,0 +1,43 @@
+<%= form_with model: @diagnosis, url: diagnoses_path, local: true do |form| %>
+    <%= form.hidden_field :id %>
+    <%= form.text_field :title %>
+  
+    <h3>Q.1 どちらの音楽がききたいですか？</h3>
+  
+    <% Diagnosis.where(id: [1, 2]).each do |diagnosis| %>
+      <label>
+        <%= radio_button_tag :diagnosis_id, diagnosis.id %>
+        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "link" %>
+      </label>
+    <% end %>
+  <% end %>
+  
+  <% if params[:id] == "1" %>
+  <h3>Q.2 次にどちらの音楽がききたいですか？</h3>
+
+  <% Diagnosis.where(id: [3, 4, 5]).each do |diagnosis| %>
+    <label>
+      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
+      <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "link" %>
+    </label>
+  <% end %>
+
+<% elsif params[:id] == "2" %>
+  <h3>Q.2 次にどちらの音楽がききたいですか？</h3>
+
+  <% Diagnosis.where(id: [6, 7]).each do |diagnosis| %>
+    <label>
+      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
+      <%= link_to diagnosis.title, diagnosis2s_path(id: diagnosis.id), class: "link" %>
+    </label>
+  <% end %>
+<% elsif params[:id] == "5" %>
+  <h3>Q.3 最後にどちらの音楽がききたいですか？</h3>
+
+  <% Diagnosis.where(id: [8, 9, 10]).each do |diagnosis| %>
+    <label>
+      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
+      <%= link_to diagnosis.title, diagnosis2s_path(id: diagnosis.id), class: "link" %>
+    </label>
+  <% end %>
+<% end %>

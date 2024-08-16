@@ -12,12 +12,13 @@
             </h1>
             <ul class="nav-list">
                 <li class="nav-list-item">about fragrance</li>
-                <li class="nav-list-item"><%= link_to "診断", class: "link" %></li>
+                <li class="nav-list-item"><%= link_to '診断結果', diagnoses_path , class: "link"%></li>
             </ul>
         </header>
 
         <div class="start">
-            <h6>Are you ready?</h6>
-            <%= link_to "診断を始める", questions_path, class: "link" %>
+            <h6>おことの情報</h6>
+            <%= link_to "ことについて", diagnoses_path , class: "link" %>
+            <%= link_to "おことの演奏技法", diagnoses_path , class: "link" %>
         </div>
     </body>
