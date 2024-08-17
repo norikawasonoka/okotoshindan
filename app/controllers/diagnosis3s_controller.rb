@@ -1,2 +1,0 @@
-class Diagnosis3sController < ApplicationController
-end

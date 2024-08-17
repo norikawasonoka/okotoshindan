@@ -9,7 +9,7 @@ Rails.application.configure do
   config.enable_reloading = true
   # Do not eager load code on boot.
   config.eager_load = false
-  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+  
   # Show full error reports.
   config.consider_all_requests_local = true
 

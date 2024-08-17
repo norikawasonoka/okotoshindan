@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   root "static_pages#top"
   resources :diagnoses 
-  resources :diagnosis2s
-  resources :diagnosis3s
-  resources :result
+  resources :results
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
