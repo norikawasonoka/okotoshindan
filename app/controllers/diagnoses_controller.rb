@@ -9,7 +9,6 @@ class DiagnosesController < ApplicationController
 
   def show
     @diagnosis = Diagnosis.find_by(id: params[:id])
-    @diagnosis2 = Diagnosis2.new
   end
 
   def create
@@ -25,6 +24,6 @@ class DiagnosesController < ApplicationController
 
 private
   def diagnosis_params
-      params.require(:diagnosis).permit(:question)
+      params.require(:diagnosis).permit(:title)
   end
 end

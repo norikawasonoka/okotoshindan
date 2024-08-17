@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root "static_pages#top"
+  resources :okotos, only: %i[index] do
+    collection do
+      get 'plays'
+    end
+  end
   resources :diagnoses 
   resources :results
   

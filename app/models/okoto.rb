@@ -1,0 +1,2 @@
+class Okoto < ApplicationRecord
+end
