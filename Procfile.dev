@@ -1,5 +1,4 @@
 web: env RUBY_DEBUG_OPEN=true bin/rails server -b 0.0.0.0 -p 3000
-web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
 js: yarn build --watch
 css: yarn build:css --watch
 web: bundle exec puma -C config/puma.rb
