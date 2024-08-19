@@ -5,8 +5,9 @@ Rails.application.routes.draw do
       get 'plays'
     end
   end
-  resources :diagnoses 
-  resources :results
+  resources :diagnoses do
+    resources :results, only: [:new, :create, :show]
+  end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
