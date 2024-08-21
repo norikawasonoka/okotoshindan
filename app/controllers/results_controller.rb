@@ -8,7 +8,7 @@ class ResultsController < ApplicationController
   end
 
   def show
-    @result = Result.find(params[:id])
+    @result = Result.find_by(id: params[:id])
     @diagnosis = @result.diagnosis
   end
 

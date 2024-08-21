@@ -4,8 +4,10 @@
   <% Diagnosis.where(id: [3, 4, 5]).each do |diagnosis| %>
     <label>
       <%= radio_button_tag :diagnosis_id, diagnosis.id %>
-      <% if [3, 4].include?(diagnosis.id) %>
-        <%= link_to diagnosis.title, diagnosis_result_path(diagnosis_id: diagnosis.id), class: "link" %>
+      <% if diagnosis.id == 3 %>
+        <%= link_to diagnosis.title, result_path(1), class: "link" %>
+      <% elsif diagnosis.id == 4 %>
+        <%= link_to diagnosis.title, result_path(2), class: "link" %>
       <% elsif diagnosis.id == 5 %>
         <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "link" %>
       <% end %>
@@ -18,17 +20,27 @@
   <% Diagnosis.where(id: [6, 7]).each do |diagnosis| %>
     <label>
       <%= radio_button_tag :diagnosis_id, diagnosis.id %>
-      <%= link_to diagnosis.title, diagnosis_result_path(diagnosis_id: diagnosis.id), class: "link" %>
+      <% if diagnosis.id == 6 %>
+        <%= link_to diagnosis.title, result_path(6), class: "link" %>
+      <% elsif diagnosis.id == 7 %>
+        <%= link_to diagnosis.title, result_path(7), class: "link" %>
+      <% end %> <!-- ここを修正してendを追加 -->
     </label>
   <% end %>
-  
+
 <% elsif params[:id] == "5" %>
   <h3>Q.3 最後にどちらの音楽がききたいですか？</h3>
 
   <% Diagnosis.where(id: [8, 9, 10]).each do |diagnosis| %>
     <label>
       <%= radio_button_tag :diagnosis_id, diagnosis.id %>
-      <%= link_to diagnosis.title, diagnosis_result_path(diagnosis_id: diagnosis.id), class: "link" %>
+      <% if diagnosis.id == 8 %>
+        <%= link_to diagnosis.title, result_path(3), class: "link" %>
+      <% elsif diagnosis.id == 9 %>
+        <%= link_to diagnosis.title, result_path(4), class: "link" %>
+      <% elsif diagnosis.id == 10 %>
+        <%= link_to diagnosis.title, result_path(5), class: "link" %>
+      <% end %> <!-- ここもendを追加 -->
     </label>
   <% end %>
 <% end %>
