@@ -1,23 +1,2 @@
-<h2>Result</h2>
-<p>Diagnosis ID: <%= @diagnosis.id %></p>
-<p>Result ID: <%= @result.id %></p>
-<p>Result Title: <%= @result.title %></p>
-
-<% case @diagnosis.id %>
-  <% when 3 %>
-    <p>Diagnosis ID 3 - This is the result for Diagnosis ID 3 (Result ID 1)</p>
-  <% when 4 %>
-    <p>Diagnosis ID 4 - This is the result for Diagnosis ID 4 (Result ID 2)</p>
-  <% when 8 %>
-    <p>Diagnosis ID 8 - This is the result for Diagnosis ID 8 (Result ID 3)</p>
-  <% when 9 %>
-    <p>Diagnosis ID 9 - This is the result for Diagnosis ID 9 (Result ID 4)</p>
-  <% when 10 %>
-    <p>Diagnosis ID 10 - This is the result for Diagnosis ID 10 (Result ID 5)</p>
-  <% when 6 %>
-    <p>Diagnosis ID 6 - This is the result for Diagnosis ID 6 (Result ID 6)</p>
-  <% when 7 %>
-    <p>Diagnosis ID 7 - This is the result for Diagnosis ID 7 (Result ID 7)</p>
-  <% else %>
-    <p>No matching result found for this diagnosis.</p>
-<% end %>
+<h2>診断結果</h2>
+<p><%= @result.title %></p>
