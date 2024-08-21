@@ -9,25 +9,6 @@ class DiagnosesController < ApplicationController
 
   def show
     @diagnosis = Diagnosis.find_by(id: params[:id])
-    
-    case @diagnosis.id
-    when 3
-      @result = Result.find(1)
-    when 4
-      @result = Result.find(2)
-    when 8
-      @result = Result.find(3)
-    when 9
-      @result = Result.find(4)
-    when 10
-      @result = Result.find(5)
-    when 6
-      @result = Result.find(6)
-    when 7
-      @result = Result.find(7)
-    else
-      @result = nil # 他のidの場合はnilなどを設定しておく
-    end
   end
 
   def create

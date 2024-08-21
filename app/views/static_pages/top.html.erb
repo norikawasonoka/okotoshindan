@@ -1,24 +1,31 @@
 <!DOCTYPE html> <!--　この文章がHTML文章であることを伝える要素です。-->
-<html lang="ja"><!--言語の指定-->
-    <head><!--ページに表示されない情報(サイトの裏側の設定)-->
-        <meta charset="utf-8">
-        <title>香水診断スタート</title><!--ブラウザのタブのタイトルを指定-->
-    </head>
+<html data-theme="retro">
+  <div data-theme="retro">
+    <span data-theme="retro"></span>
+  </div>
+</html>
 
     <body>
         <header>
             <h1 class="headline">
-            <a>Perfu_me</a>
             </h1>
             <ul class="nav-list">
-                <li class="nav-list-item">about fragrance</li>
-                <li class="nav-list-item"><%= link_to '診断スタート', diagnoses_path , class: "link"%></li>
+            <li class="nav-list-item">
+            <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
+            </li>
             </ul>
         </header>
 
         <div class="start">
             <h6>おことの情報</h6>
-            <%= link_to "ことについて", diagnoses_path , class: "link" %>
-            <%= link_to "おことの演奏技法", diagnoses_path , class: "link" %>
+            <%= link_to "ことについて", okotos_path , class: "btn btn-secondary" %>
+            <%= link_to "おことの演奏技法", plays_okotos_path , class: "btn btn-secondary" %>
         </div>
+        <div class="p-4">
+  <button class="btn btn-primary">primary</button>
+  <button class="btn btn-secondary">secondary</button>
+  <button class="btn btn-secondary">accent</button>
+</div>
     </body>
+
+
