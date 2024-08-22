@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_103846) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_070408) do
   create_table "diagnoses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -42,5 +42,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_103846) do
     t.index ["diagnosis_id"], name: "index_results_on_diagnosis_id"
   end
 
+  create_table "youtube_videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "youtube_id"
+    t.string "title"
+    t.text "description"
+    t.datetime "published_at"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "result_id", null: false
+    t.index ["result_id"], name: "index_youtube_videos_on_result_id"
+  end
+
   add_foreign_key "results", "diagnoses"
+  add_foreign_key "youtube_videos", "results"
 end

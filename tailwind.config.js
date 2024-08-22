@@ -6,7 +6,7 @@ module.exports = {
     './app/javascript/**/*.js'
   ]
 }
-module.exports = {
+= {
   //...
 
   // add daisyUI plugin

@@ -1,2 +1,10 @@
 <h2>診断結果</h2>
 <p><%= @result.title %></p>
+
+<% if @youtube_embed_codes.present? %>
+  <% @youtube_embed_codes.each do |embed_code| %>
+    <div class="youtube-container">
+      <%= embed_code.html_safe %>
+    </div>
+  <% end %>
+<% end %>
