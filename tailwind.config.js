@@ -7,11 +7,13 @@ module.exports = {
   ],
 
   // add daisyUI plugin
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+  ],
 
   // daisyUI config (optional - here are the default values)
   daisyui: {
-    themes: false,
+    themes: ["light", "dark", "cupcake", "retro", "valentine"],
     darkTheme: "retro",
     base: true,
     styled: true,
