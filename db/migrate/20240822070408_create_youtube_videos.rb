@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This migration creates the diagnoses table.
 class CreateYoutubeVideos < ActiveRecord::Migration[7.1]
   def change
     create_table :youtube_videos do |t|

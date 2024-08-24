@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Represents the controller for Diagnoses.
 class DiagnosesController < ApplicationController
   def index
     @diagnosis = Diagnosis.all
@@ -13,17 +16,18 @@ class DiagnosesController < ApplicationController
 
   def create
     @diagnosis = Diagnosis.new(diagnosis_params)
-  #params[:topic][:question] ? @topic.question = params[:topic][:question].join("") : false
+    # params[:topic][:question] ? @topic.question = params[:topic][:question].join("") : false
     if @diagnosis.save
-        flash[:notice] = "診断が完了しました"
-        redirect_to diagnosis_path(@diagnosis.id)
+      flash[:notice] = '診断が完了しました'
+      redirect_to diagnosis_path(@diagnosis.id)
     else
-        redirect_to :action => "new"
+      redirect_to action: 'new'
     end
   end
 
-private
+  private
+
   def diagnosis_params
-      params.require(:diagnosis).permit(:title)
+    params.require(:diagnosis).permit(:title)
   end
 end
