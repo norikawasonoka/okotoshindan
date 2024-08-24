@@ -1,15 +1,16 @@
+<div class="p-4">
+<div class="container mx-auto text-center">
 <% if params[:id] == "1" %>
   <h3>Q.2 次にどちらの音楽がききたいですか？</h3>
 
   <% Diagnosis.where(id: [3, 4, 5]).each do |diagnosis| %>
     <label>
-      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
       <% if diagnosis.id == 3 %>
-        <%= link_to diagnosis.title, result_path(1), class: "link" %>
+        <%= link_to diagnosis.title, result_path(1), class: "btn btn-primary" %>
       <% elsif diagnosis.id == 4 %>
-        <%= link_to diagnosis.title, result_path(2), class: "link" %>
+        <%= link_to diagnosis.title, result_path(2), class: "btn btn-primary" %>
       <% elsif diagnosis.id == 5 %>
-        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "link" %>
+        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id),class: "btn btn-primary" %>
       <% end %>
     </label>
   <% end %>
@@ -19,11 +20,10 @@
 
   <% Diagnosis.where(id: [6, 7]).each do |diagnosis| %>
     <label>
-      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
       <% if diagnosis.id == 6 %>
-        <%= link_to diagnosis.title, result_path(6), class: "link" %>
+        <%= link_to diagnosis.title, result_path(6), class: "btn btn-primary" %>
       <% elsif diagnosis.id == 7 %>
-        <%= link_to diagnosis.title, result_path(7), class: "link" %>
+        <%= link_to diagnosis.title, result_path(7), class: "btn btn-primary" %>
       <% end %> <!-- ここを修正してendを追加 -->
     </label>
   <% end %>
@@ -33,14 +33,15 @@
 
   <% Diagnosis.where(id: [8, 9, 10]).each do |diagnosis| %>
     <label>
-      <%= radio_button_tag :diagnosis_id, diagnosis.id %>
       <% if diagnosis.id == 8 %>
-        <%= link_to diagnosis.title, result_path(3), class: "link" %>
+        <%= link_to diagnosis.title, result_path(3), class: "btn btn-primary" %>
       <% elsif diagnosis.id == 9 %>
-        <%= link_to diagnosis.title, result_path(4), class: "link" %>
+        <%= link_to diagnosis.title, result_path(4), class: "btn btn-primary" %>
       <% elsif diagnosis.id == 10 %>
-        <%= link_to diagnosis.title, result_path(5), class: "link" %>
+        <%= link_to diagnosis.title, result_path(5), class: "btn btn-primary" %>
       <% end %> <!-- ここもendを追加 -->
     </label>
   <% end %>
 <% end %>
+</div>
+</div>
