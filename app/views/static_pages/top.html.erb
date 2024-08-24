@@ -1,25 +1,23 @@
-<!DOCTYPE html> <!--　この文章がHTML文章であることを伝える要素です。-->
-<html data-theme="valentine"></html>
-  <div class="p-4">
-  <div class="container mx-auto text-center">
-    <body>
-        <header>
-            <h1 class="headline">
-            </h1>
-            <ul class="nav-list">
-            <li class="nav-list-item">
-            <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
-            </li>
-            </ul>
-        </header>
-
-        
-          <h6>おことの情報</h6>
-            <%= link_to "ことについて", okotos_path , class: "btn btn-secondary" %>
-            <%= link_to "おことの演奏技法", plays_okotos_path , class: "btn btn-accent" %>
-        </div>
+<!DOCTYPE html> <!-- この文章がHTML文章であることを伝える要素です。 -->
+<html data-theme="valentine">
+  <head>
+    <title>おこと診断</title> <!-- タイトルを追加しておくといいナ -->
+  </head>
+  <body>
+    <header class="p-4">
+      <div class="container mx-auto text-center">
+        <h1>おこと診断</h1>
       </div>
-      </div>
-    </body>
-  </div>
-</div>
+    </header>
+    
+    <div class="p-4">
+    <div class="container mx-auto text-center">
+      <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
+      
+      <h6>おことの情報</h6>
+      <%= link_to "ことについて", okotos_path , class: "btn btn-secondary" %>
+      <%= link_to "おことの演奏技法", plays_okotos_path , class: "btn btn-accent" %>
+    </div>
+    </div>
+  </body>
+</html>
