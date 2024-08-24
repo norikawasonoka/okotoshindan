@@ -1,14 +1,18 @@
-<div class="container mx-auto text-center">
-<div class="p-4">
-<h2>診断結果</h2>
-<p><%= @result.title %></p>
+<div class="mb-4 flex flex-col items-center text-center">
+  <div class="p-4">
+    <h2>診断結果</h2>
+    <p><%= @result.title %></p>
 
-<% if @youtube_embed_codes.present? %>
-  <% @youtube_embed_codes.each do |embed_code| %>
-    <div class="youtube-container">
-      <%= embed_code.html_safe %>
-    </div>
-  <% end %>
-<% end %>
-</div>
+    <% if @youtube_embed_codes.present? %>
+      <% @youtube_embed_codes.each do |video| %>
+        <div class="youtube-container mb-4 flex flex-col items-center">
+          <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
+          <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
+          <div class="w-full max-w-lg">
+            <%= video[:embed_code].html_safe %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
