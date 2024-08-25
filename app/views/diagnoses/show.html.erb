@@ -1,7 +1,7 @@
 <div class="p-4">
 <div class="container mx-auto text-center">
 <% if params[:id] == "1" %>
-  <h3>Q.2 次にどちらの音楽がききたいですか？</h3>
+  <h3 class="text-xl p-4">Q.2 次にどちらの音楽がききたいですか？</h3>
 
   <% Diagnosis.where(id: [3, 4, 5]).each do |diagnosis| %>
     <label>
@@ -16,7 +16,7 @@
   <% end %>
 
 <% elsif params[:id] == "2" %>
-  <h3>Q.2 次にどちらの音楽がききたいですか？</h3>
+  <h3 class="text-xl p-4">Q.2 次にどちらの音楽がききたいですか？</h3>
 
   <% Diagnosis.where(id: [6, 7]).each do |diagnosis| %>
     <label>
@@ -29,7 +29,7 @@
   <% end %>
 
 <% elsif params[:id] == "5" %>
-  <h3>Q.3 最後にどちらの音楽がききたいですか？</h3>
+  <h3 class="text-xl p-4">Q.3 最後にどちらの音楽がききたいですか？</h3>
 
   <% Diagnosis.where(id: [8, 9, 10]).each do |diagnosis| %>
     <label>

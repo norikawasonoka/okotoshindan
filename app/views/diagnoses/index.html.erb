@@ -4,7 +4,7 @@
     <% form.hidden_field :id %>
     <% form.text_field :title %>
     <div class="text-center">
-    <h3>Q.1 どちらの音楽がききたいですか？</h3>
+    <h3 class="text-xl p-4">Q.1 どちらの音楽がききたいですか？</h3>
     </div>
     <% Diagnosis.where(id: [1, 2]).each do |diagnosis| %>
       <label>
