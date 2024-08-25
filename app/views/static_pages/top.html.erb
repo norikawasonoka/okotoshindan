@@ -6,7 +6,7 @@
   <body>
     <header class="p-4">
       <div class="container mx-auto text-center">
-        <h1>おこと診断</h1>
+        <h1 class="text-4xl">おこと診断</h1>
       </div>
     </header>
     
@@ -14,7 +14,7 @@
     <div class="container mx-auto text-center">
       <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
       
-      <h6>おことの情報</h6>
+      <h6 class="text-2xl p-4">おことの情報</h6>
       <%= link_to "ことについて", okotos_path , class: "btn btn-secondary" %>
       <%= link_to "おことの演奏技法", plays_okotos_path , class: "btn btn-accent" %>
     </div>
