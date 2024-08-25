@@ -9,40 +9,51 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-# frozen_string_literal: true
 
-ActiveRecord::Schema[7.1].define(version: 20_240_822_070_408) do
-  create_table 'diagnoses', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_070408) do
+  create_table "diagnoses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'okotos', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "diagnosis2s", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'results', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'diagnosis_id', null: false
-    t.index ['diagnosis_id'], name: 'index_results_on_diagnosis_id'
+  create_table "diagnosis3s", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'youtube_videos', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.string 'youtube_id'
-    t.string 'title'
-    t.text 'description'
-    t.datetime 'published_at'
-    t.integer 'duration'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'result_id', null: false
-    t.index ['result_id'], name: 'index_youtube_videos_on_result_id'
+  create_table "okotos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'results', 'diagnoses'
-  add_foreign_key 'youtube_videos', 'results'
+  create_table "results", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "diagnosis_id", null: false
+    t.index ["diagnosis_id"], name: "index_results_on_diagnosis_id"
+  end
+
+  create_table "youtube_videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "youtube_id"
+    t.string "title"
+    t.text "description"
+    t.datetime "published_at"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "result_id", null: false
+    t.index ["result_id"], name: "index_youtube_videos_on_result_id"
+  end
+
+  add_foreign_key "results", "diagnoses"
+  add_foreign_key "youtube_videos", "results"
 end

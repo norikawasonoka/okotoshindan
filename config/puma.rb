@@ -9,13 +9,9 @@
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
-max_threads_count = ENV.fetch('RAILS_MAX_THREADS', 5)
-min_threads_count = ENV.fetch('RAILS_MIN_THREADS', max_threads_count)
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
+min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
-
-port ENV.fetch('PORT', 3000)
-environment ENV.fetch('RAILS_ENV', 'development')
-pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
 
 # Specifies that the worker count should equal the number of processors in production.
 if ENV['RAILS_ENV'] == 'production'
