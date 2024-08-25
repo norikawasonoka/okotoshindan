@@ -13,7 +13,7 @@ module.exports = {
 
   // daisyUI config (optional - here are the default values)
   daisyui: {
-    themes: ["light", "dark", "cupcake", "retro", "valentine"],
+    themes: ["valentine"],
     darkTheme: "retro",
     base: true,
     styled: true,
