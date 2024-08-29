@@ -33,3 +33,5 @@ LINEのログイン機能　LINEで新曲追加が通知が行くようにする
 ■ 機能の実装方針予定
 一般的なCRUD以外の実装予定の機能についてそれぞれどのようなイメージ(使用するAPIや)で実装する予定なのか現状考えているもので良いので教えて下さい。
 バックエンド　Ruby on Rails　データベース　MYSQL フロントエンド JavaScript,tailwindcss　インフラ　heroku　LINE Messaging API　環境開発　Docker
+
+![alt text](<スクリーンショット 2024-08-29 105751.png>)
