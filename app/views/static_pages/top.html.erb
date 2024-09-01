@@ -1,23 +1,25 @@
-<!DOCTYPE html> <!-- この文章がHTML文章であることを伝える要素です。 -->
-<html data-theme="valentine">
+<!DOCTYPE html>
+<html>
   <head>
-    <title>おこと診断</title> <!-- タイトルを追加しておくといいナ -->
+    <title>おこと診断</title>
   </head>
   <body>
-    <header class="p-4">
-    <div class="container mx-auto text-center">
-      <img src="<%= asset_path('kotosin.png') %>" class="mx-auto" style="width: 500px;" />
-    </div>
-  </header>
+  <div class="bg-scroll" style="background-image: url('<%= asset_path('sakura.png') %>'); height: 100vh; width: 100%; background-size: cover; background-position: center;">
+      <header class="p-4">
+        <div class="container mx-auto text-center">
+          <img src="<%= asset_path('kotosin.png') %>" class="mx-auto" style="width: 500px;" />
+        </div>
+      </header>
 
-    <div class="p-4">
-    <div class="container mx-auto text-center">
-      <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
-      
-      <h6 class="text-2xl p-4">おことの情報</h6>
-      <%= link_to "ことについて", okotos_path , class: "btn btn-secondary" %>
-      <%= link_to "おことの演奏技法", plays_okotos_path , class: "btn btn-accent" %>
-    </div>
+      <div class="p-4">
+        <div class="container mx-auto text-center">
+          <%= link_to '診断スタート', diagnoses_path, class: "btn btn-primary" %>
+          <h6 class="text-2xl p-4">おことの情報</h6>
+          <%= link_to "ことについて", okotos_path, class: "btn btn-secondary" %>
+          <%= link_to "おことの演奏技法", plays_okotos_path, class: "btn btn-accent" %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
+
