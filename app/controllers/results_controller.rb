@@ -49,6 +49,26 @@ class ResultsController < ApplicationController
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
         HTML
       }
+      youtube_embed_codes << {
+        title: '「春の海」',
+        description: 'お正月の曲です',
+        embed_code: <<-HTML
+          <iframe src="https://www.youtube.com/embed/M0qM5zrWock?"#{' '}
+          title=title="春の海（三橋貴風・沢井忠夫）／Haru no Umi（Spring Sea）"#{' '}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+        HTML
+      }
+      youtube_embed_codes << {
+        title: '「さくらさくら」',
+        description: '誰もが知っている曲、春になるとスーパーでよく聞きますね',
+        embed_code: <<-HTML
+          <iframe src="https://www.youtube.com/embed/TgMC-AKTXLQ?"#{' '}
+          title="おことで「さくらさくら」を弾いてみよう！"#{' '}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+        HTML
+      }
     when 2
       youtube_embed_codes << {
         title: '「春の海幻想」',
@@ -56,6 +76,16 @@ class ResultsController < ApplicationController
         embed_code: <<-HTML
           <iframe src="https://www.youtube.com/embed/kQrFZ8e1E0g?"#{' '}
           title="「春の海幻想」 【加東邦楽演奏会2021】"#{' '}
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+        HTML
+      }
+      youtube_embed_codes << {
+        title: '「筝曲 「さくら」箏独奏による主題と六つの変奏」',
+        description: 'あの穏やかな曲がこんな激しくなるとはびっくりします！最後まで聞いてみてください',
+        embed_code: <<-HTML
+          <iframe src="https://www.youtube.com/embed/3wvQk57vwHY?#{' '}
+          title="筝曲 「さくら」箏独奏による主題と六つの変奏木村園代 Japanese koto"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
         HTML
