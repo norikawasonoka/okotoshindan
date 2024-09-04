@@ -2,13 +2,10 @@
 
 <html>
   <head>
-    <title>おことの情報</title> <!-- タイトルを追加しておくといいナ -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- 必要に応じてCSSをリンクするカ -->
+    <title>おことの情報</title>
   </head>
 
   <body>
-  <div class="bg-scroll" style="background-image: url('<%= asset_path('sakura.png') %>'); height: 100vh; width: 100%; background-size: cover; background-position: center; background-attachment: fixed;">
-
     <div class="container mx-auto text-center">
       <div class="p-4">
         <h1 class="text-2xl p-4">楽器の説明</h1>
@@ -28,6 +25,7 @@
         <img src="/assets/kindai.png" class="mx-auto" style="width: 300px;" />
         <h3 class="text-2xl p-4">楽譜</h3>
           <iframe
+            class="mx-auto"
             width="656" 
             height="369" 
             src="https://www.youtube.com/embed/TgMC-AKTXLQ?" 
@@ -37,18 +35,11 @@
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
           </iframe>
-          <iframe 
-            width="654" 
-            height="369" 
-            src="https://www.youtube.com/embed/YiwWGt7dERQ?" 
-            title="伝統音楽デジタルライブラリー　箏　「箏の楽譜」" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-          </iframe>
+      </div>
+      <div class="mt-4">
+        <%= link_to 'トップページに戻る', root_path, class: 'btn btn-primary' %>
       </div>
     </div>
     </div>
-  </body>
+  </body> 
 </html>
