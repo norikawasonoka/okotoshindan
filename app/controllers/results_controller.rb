@@ -222,3 +222,4 @@ class ResultsController < ApplicationController
     youtube_embed_codes
   end
 end
+
