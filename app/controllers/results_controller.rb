@@ -77,7 +77,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/kQrFZ8e1E0g?"#{' '}
           title="「春の海幻想」 【加東邦楽演奏会2021】"#{' '}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -87,7 +87,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/3wvQk57vwHY?#{' '}
           title="筝曲 「さくら」箏独奏による主題と六つの変奏木村園代 Japanese koto"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
     when 3
@@ -98,7 +98,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/YmGTJ6SGeUU"#{' '}
           title="【箏曲部】この音とまれ! / 天泣 プロ奏者が弾いてみた！"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -108,7 +108,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/Y_Db88Ef6FQ" #{' '}
           title="この音とまれ! 作中オリジナル楽曲「龍星群」"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -118,7 +118,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/yegQRUhJkuM" #{' '}
           title="この音とまれ! 作中オリジナル楽曲「久遠」"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
     when 4
@@ -129,7 +129,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/JhMK0Awbiuk?"#{' '}
           title="二つの群の為に (沢井忠夫作曲) ／FUTATSU NO GUN NO TAME NI(by Sawai,Tadao)"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -139,7 +139,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/2gQzPktFU5A?"#{' '}
           title="箏独奏曲「線香花火」宮城道雄作曲"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -149,7 +149,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/-_jqps7Yd6Q?"#{' '}
           title="【箏三重奏】翊－あくるひ－（作曲：橋本みぎわ）"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
     when 5
@@ -160,7 +160,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/9h-WLGVXzEo?"#{' '}
           title="『絵てがみ』Etegami"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -170,7 +170,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/VXdFX8ON2bQ?#{' '}
           title="『遊郭』Yuukaku"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
     when 6
@@ -181,7 +181,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/reCGcMYN9-U?"#{' '}
           title="#鬼滅の刃 #箏 #紅蓮華 【練習風景２２】アニメ「鬼滅の刃」OP紅蓮華（和楽器一人３重奏）"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -191,7 +191,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/01v4fttX8sM?"#{' '}
           title="千本桜 箏独奏 Senbonzakura on Koto solo"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>
         HTML
       }
     when 7
@@ -202,7 +202,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/IpB6Vck3kQY?"#{' '}
           title="箏三重奏「炎」 KOTO trio plays &quot;HOMURA&quot; from Demon Slayer: Kimetsu no Yaiba"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
       youtube_embed_codes << {
@@ -212,7 +212,7 @@ class ResultsController < ApplicationController
           <iframe src="https://www.youtube.com/embed/LczZznH1yLY?"#{' '}
           title="【多重演奏】お琴で「人生のメリーゴーランド」／映画「ハウルの動く城」より"#{' '}
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>
         HTML
       }
     else
