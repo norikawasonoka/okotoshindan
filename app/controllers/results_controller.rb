@@ -76,7 +76,7 @@ class ResultsController < ApplicationController
         embed_code: <<-HTML
           <iframe src="https://www.youtube.com/embed/kQrFZ8e1E0g?"#{' '}
           title="「春の海幻想」 【加東邦楽演奏会2021】"#{' '}
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#{' '}
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
         HTML
       }
@@ -103,7 +103,7 @@ class ResultsController < ApplicationController
       }
       youtube_embed_codes << {
         title: 'この音とまれ! /「龍星群」',
-        description: '音楽は１分４０秒ごろから始まります。高校生の時文化先で弾いたのを思い出します。',
+        description: '音楽は１分４０秒ごろから始まります。高校生の時文化祭で弾いたのを思い出します。',
         embed_code: <<-HTML
           <iframe src="https://www.youtube.com/embed/Y_Db88Ef6FQ" #{' '}
           title="この音とまれ! 作中オリジナル楽曲「龍星群」"#{' '}
@@ -155,7 +155,7 @@ class ResultsController < ApplicationController
     when 5
       youtube_embed_codes << {
         title: '「絵てがみ」',
-        description: '個人的なことになりますが10月の演奏会で弾く曲です',
+        description: '10月の演奏会で弾く曲です。きれいな曲なので弾いていて楽しいです。',
         embed_code: <<-HTML
           <iframe src="https://www.youtube.com/embed/9h-WLGVXzEo?"#{' '}
           title="『絵てがみ』Etegami"#{' '}
