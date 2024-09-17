@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'terms', to: 'static_pages#terms'
   resources :okotos, only: %i[index] do
     collection do
       get 'plays'
