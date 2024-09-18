@@ -10,6 +10,13 @@ module.exports = {
   plugins: [
     require("daisyui"),
   ],
+    theme: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        'pinku': '#fce7f3',
+      },
+    },
 
   // daisyUI config (optional - here are the default values)
   daisyui: {
