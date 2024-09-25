@@ -5,4 +5,5 @@ class Result < ApplicationRecord
   validates :title, presence: true
 
   belongs_to :diagnosis
+  has_many :youtube_videos
 end
