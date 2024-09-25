@@ -166,9 +166,19 @@ class YoutubeVideo < ActiveHash::Base
           title="【多重演奏】お琴で「人生のメリーゴーランド」／映画「ハウルの動く城」より"
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
+        id: 18,
+        result_id: 7,
+        title: '「やさしさに包まれたなら」（魔女の宅急便）',
+        description: '魔女の宅急便がみたくなりますね',
+        embed_code: '<iframe src="https://www.youtube.com/embed/Q001PsPgdZQ?"
+           title="箏（琴）三重奏「やさしさに包まれたなら」
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     }
   ]
 
   include ActiveHash::Associations
-  has_many :results # もし、resultsとの関連を持たせたいならこの行を加えるダ
+  belongs_to :result # もし、resultsとの関連を持たせたいならこの行を加えるダ
 end
