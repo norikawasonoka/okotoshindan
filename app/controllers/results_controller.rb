@@ -14,6 +14,7 @@ class ResultsController < ApplicationController
     @result = Result.find_by(id: params[:id])
     @diagnosis = @result.diagnosis
     @youtube_embed_codes = fetch_youtube_embed_codes(@result.id)
+    @youtube_videos = YoutubeVideo.where(result_id: @result.id)
   end
 
   def create

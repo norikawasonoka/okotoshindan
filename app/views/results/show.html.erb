@@ -10,8 +10,16 @@
           <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
           <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
           <div class="w-full max-w-lg">
-            <%= raw video[:embed_code] %>
+            <%= raw video[:embed_code] %> 
           </div>
+            <div class="p-4">
+              <div class="btn btn-neutral text-xl">
+                <%= link_to "https://twitter.com/share?url=https://www.okotoshindan.com//&text=【お箏診断】#{video.title}", 
+                            target: '_blank', title: "Xでシェア" do %>
+                  曲をXでシェアする
+                <% end %>
+              </div>
+            </div>
         </div>
       <% end %>
     <% end %>
