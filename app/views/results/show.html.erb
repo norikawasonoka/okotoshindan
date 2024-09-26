@@ -9,17 +9,25 @@
         <div class="youtube-container mb-4 flex flex-col items-center">
           <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
           <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
-          <div class="w-full max-w-lg">
-            <%= raw video[:embed_code] %> 
-          </div>
+            <div class="w-full max-w-lg">
+              <%= raw video[:embed_code] %> 
+            </div>
             <div class="p-4">
+            <% if video.embed_code %>
+              <% youtube_url = video.embed_code.match(/src="([^"]+)"/)[1] %>
+            <% end %>
+            
+            <% if youtube_url %>
               <div class="btn btn-neutral text-xl">
-                <%= link_to "https://twitter.com/share?url=https://www.okotoshindan.com//&text=【お箏診断】#{video.title}", 
+                <%= link_to "https://twitter.com/share?url=#{CGI.escape(youtube_url)}&text=#{CGI.escape("【お箏診断】#{video.title}")}", 
                             target: '_blank', title: "Xでシェア" do %>
                   曲をXでシェアする
                 <% end %>
               </div>
-            </div>
+            <% else %>
+              <p>動画が見つかりませんでした。</p>
+            <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>
