@@ -108,6 +108,16 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
+      id: 20,
+      result_id: 4,
+      title: '「絵空箏／ESORAGOTO」',
+      description: '「二つの群の為に」を作曲した息子さんの曲です。',
+      embed_code: '<iframe src="https://www.youtube.com/embed/HmY1WieykpE"
+          title="絵空箏／ESORAGOTO　　（沢井比河流 作曲／composed by Sawai, Hikaru）"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
       id: 12,
       result_id: 5,
       title: '「絵てがみ」',
@@ -122,13 +132,23 @@ class YoutubeVideo < ActiveHash::Base
       result_id: 5,
       title: '「遊郭」',
       description: '遊郭を創造しながら聞くと悲しい気分になってきます。時代の厳しさを物語っています',
-      embed_code: '<iframe src="https://www.youtube.com/embed/VXdFX8ON2bQ?
+      embed_code: '<iframe src="https://www.youtube.com/embed/VXdFX8ON2bQ?"
           title="『遊郭』Yuukaku"
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
       id: 14,
+      result_id: 5,
+      title: '「桃花流水～三国志によせて～」',
+      description: '歌もあって華やかな曲です。三国志ということもあり曲調も中国っぽいです！',
+      embed_code: '<iframe src="https://www.youtube.com/embed/g2GQ-A70a6U"
+          title="【生田流 淀の会】桃花流水～三国志によせて～" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
+      id: 15,
       result_id: 6,
       title: '「紅蓮華 」',
       description: 'アニメ「鬼滅の刃」op です',
@@ -138,7 +158,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 15,
+      id: 16,
       result_id: 6,
       title: '「千本桜 」箏独奏',
       description: '手の動きに注目！',
@@ -148,7 +168,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 16,
+      id: 17,
       result_id: 7,
       title: '箏三重奏「炎」',
       description: '鬼滅の刃',
@@ -158,7 +178,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 17,
+      id: 18,
       result_id: 7,
       title: '「人生のメリーゴーランド」（ハウルの動く城）',
       description: '高校生の時先輩方がこの曲を弾いていてきれいだなと思い筝曲部に入部するきっかけになった曲です',
@@ -168,7 +188,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-        id: 18,
+        id: 19,
         result_id: 7,
         title: '「やさしさに包まれたなら」（魔女の宅急便）',
         description: '魔女の宅急便がみたくなりますね',
