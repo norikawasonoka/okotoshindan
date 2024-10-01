@@ -45,20 +45,30 @@ class YoutubeVideo < ActiveHash::Base
       result_id: 2,
       title: '「筝曲 「さくら」箏独奏による主題と六つの変奏」',
       description: 'あの穏やかな曲がこんな激しくなるとはびっくりします！最後まで聞いてみてください',
-      embed_code: '<iframe src="https://www.youtube.com/embed/3wvQk57vwHY?
+      embed_code: '<iframe src="https://www.youtube.com/embed/3wvQk57vwHY"
           title="筝曲 「さくら」箏独奏による主題と六つの変奏木村園代 Japanese koto"
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
       id: 6,
+      result_id: 2,
+      title: '「さくら幻想曲」（編曲：河村利夫）',
+      description: '大人数ならではの合奏の迫力があります。もちろん聞いたことあるフレーズもでてきます！',
+      embed_code: '<iframe src="https://www.youtube.com/embed/djDMaWs2ABI"
+          title="さくら幻想曲（編曲：河村利夫）　坂下憲吾門下"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
+      id: 7,
       result_id: 3,
       title: 'この音とまれ! / 「天泣」',
       description: 'アニメではこのシーン号泣しました。今練習していますが激ムズです。',
       embed_code: '<iframe src="https://www.youtube.com/embed/YmGTJ6SGeUU" title="【箏曲部】この音とまれ! / 天泣 プロ奏者が弾いてみた！" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 7,
+      id: 8,
       result_id: 3,
       title: 'この音とまれ! /「龍星群」',
       description: '音楽は１分４０秒ごろから始まります。高校生の時文化祭で弾いたのを思い出します。',
@@ -68,7 +78,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 8,
+      id: 9,
       result_id: 3,
       title: 'この音とまれ! /「久遠」',
       description: '作中で初めてコンクールで弾いた曲です。本番までの道のりは青春がつまってます！！',
@@ -78,7 +88,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 9,
+      id: 10,
       result_id: 4,
       title: '「二つの群の為に」',
       description: '最初から衝撃です',
@@ -88,7 +98,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 10,
+      id: 11,
       result_id: 4,
       title: '箏独奏曲「線香花火」',
       description: '宮城道雄作曲',
@@ -98,7 +108,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 11,
+      id: 12,
       result_id: 4,
       title: '【箏三重奏】翊－あくるひ－',
       description: '作曲：橋本みぎわ、この音とまれ！の曲を作曲している方です',
@@ -108,7 +118,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 20,
+      id: 13,
       result_id: 4,
       title: '「絵空箏／ESORAGOTO」',
       description: '「二つの群の為に」を作曲した息子さんの曲です。',
@@ -118,7 +128,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 12,
+      id: 14,
       result_id: 5,
       title: '「絵てがみ」',
       description: '10月の演奏会で弾く曲です。きれいな曲なので弾いていて楽しいです。',
@@ -128,7 +138,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 13,
+      id: 15,
       result_id: 5,
       title: '「遊郭」',
       description: '遊郭を創造しながら聞くと悲しい気分になってきます。時代の厳しさを物語っています',
@@ -138,7 +148,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 14,
+      id: 16,
       result_id: 5,
       title: '「桃花流水～三国志によせて～」',
       description: '歌もあって華やかな曲です。三国志ということもあり曲調も中国っぽいです！',
@@ -148,7 +158,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 15,
+      id: 17,
       result_id: 6,
       title: '「紅蓮華 」',
       description: 'アニメ「鬼滅の刃」op です',
@@ -158,7 +168,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 16,
+      id: 18,
       result_id: 6,
       title: '「千本桜 」箏独奏',
       description: '手の動きに注目！',
@@ -168,7 +178,17 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto "></iframe>'
     },
     {
-      id: 17,
+      id: 19,
+      result_id: 6,
+      title: '『ムーンライト伝説』箏三重奏',
+      description: 'セーラームーンの曲です♪セーラームーンごっこをしていたのが懐かしいです',
+      embed_code: '<iframe src="https://www.youtube.com/embed/PXzLvVcYKIo"
+          title="『ムーンライト伝説』箏三重奏　Sailor moon opening theme on koto trio"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
+      id: 20,
       result_id: 7,
       title: '箏三重奏「炎」',
       description: '鬼滅の刃',
@@ -178,7 +198,7 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-      id: 18,
+      id: 21,
       result_id: 7,
       title: '「人生のメリーゴーランド」（ハウルの動く城）',
       description: '高校生の時先輩方がこの曲を弾いていてきれいだなと思い筝曲部に入部するきっかけになった曲です',
@@ -188,12 +208,22 @@ class YoutubeVideo < ActiveHash::Base
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     },
     {
-        id: 19,
+        id: 22,
         result_id: 7,
         title: '「やさしさに包まれたなら」（魔女の宅急便）',
         description: '魔女の宅急便がみたくなりますね',
         embed_code: '<iframe src="https://www.youtube.com/embed/Q001PsPgdZQ?"
-           title="箏（琴）三重奏「やさしさに包まれたなら」
+           title="箏（琴）三重奏「やさしさに包まれたなら」"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
+    },
+    {
+        id: 23,
+        result_id: 7,
+        title: '「レット・イット・ゴー」箏三重奏',
+        description: '社会現象になったアナと雪の女王の曲です。♪ありの～ままの～',
+        embed_code: '<iframe src="https://www.youtube.com/embed/oSKqtwSHjXM"
+           title="『レット・イット・ゴー』箏三重奏　Let It Go　from &quot;Frozen&quot; on koto trio"
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto"></iframe>'
     }
