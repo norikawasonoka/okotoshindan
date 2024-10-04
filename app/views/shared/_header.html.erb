@@ -3,13 +3,14 @@
     <div class="w-full flex justify-center"> <!-- ここを変更 -->
       <div class="p-4">
         <div class="btn btn-neutral text-xl">
-            <%= link_to "https://twitter.com/share?url=https://www.okotoshindan.com//&text=【お箏診断】
-            診断をしてあなたの聞きたいお箏の曲を聞けます♪お箏の曲は眠たくない曲もたくさんありますよ！！", 
+          <%= link_to "https://twitter.com/share?url=https://www.okotoshindan.com/&text=【お箏診断】診断をしてあなたの聞きたいお箏の曲を聞けます♪お箏の曲は眠たくない曲もたくさんありますよ！！", 
             target: '_blank', title: "Xでシェア" do %>
             アプリをXでシェアする
-            <% end %>
+          <% end %>
         </div>
+        <%= link_to 'ログアウト', line_login_api_destroy_path,data: { turbo_method: :delete } %>
       </div>
     </div>
   </div>
 </header>
+

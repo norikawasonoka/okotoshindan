@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_22_070408) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_04_040839) do
   create_table "diagnoses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -28,6 +28,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_070408) do
     t.datetime "updated_at", null: false
     t.bigint "diagnosis_id", null: false
     t.index ["diagnosis_id"], name: "index_results_on_diagnosis_id"
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "line_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["line_user_id"], name: "index_users_on_line_user_id", unique: true
   end
 
   create_table "youtube_videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
