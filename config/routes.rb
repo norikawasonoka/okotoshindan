@@ -3,6 +3,12 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
   get 'terms', to: 'static_pages#terms'
+  get '/before_login', to: 'static_pages#before_login'
+  get '/after_login', to: 'static_pages#after_login', as: 'after_login'
+  # LINEログイン関連のルーティング
+  get 'line_login_api/login', to: 'line_login_api#login'
+  get 'line_login_api/callback', to: 'line_login_api#callback'
+  delete 'line_login_api/destroy', to: 'line_login_api#destroy'
   resources :okotos, only: %i[index] do
     collection do
       get 'plays'
