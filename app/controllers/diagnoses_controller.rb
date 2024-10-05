@@ -2,6 +2,7 @@
 
 # Represents the controller for Diagnoses.
 class DiagnosesController < ApplicationController
+  skip_before_action :require_login
   def index
     @diagnosis = Diagnosis.all
   end

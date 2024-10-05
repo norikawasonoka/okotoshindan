@@ -2,6 +2,7 @@
 
 # Represents the controller for Results.
 class ResultsController < ApplicationController
+  skip_before_action :require_login
   def index
     @results = Result.all
   end
