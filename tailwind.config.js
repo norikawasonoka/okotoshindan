@@ -15,6 +15,7 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         'pinku': '#fce7f3',
+        'line': '#84cc16',
       },
     },
 
