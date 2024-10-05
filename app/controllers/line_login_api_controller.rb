@@ -68,10 +68,9 @@ class LineLoginApiController < ApplicationController
       url = 'https://api.line.me/oauth2/v2.1/verify'
       options = {
         body: {
-          id_token: line_user_id_token,
-          # 本番環境では環境変数などに保管
+          id_token: line_user_i
+          # 本番環境では環境変数などに保
           client_id = ENV['LINE_CLIENT_ID']
-        }
       }
 
       response = Typhoeus::Request.post(url, options)
