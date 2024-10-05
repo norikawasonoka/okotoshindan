@@ -57,44 +57,40 @@ class LineLoginApiController < ApplicationController
   end
 
   def get_line_user_id(code)
-
     # ユーザーのIDトークンからプロフィール情報（ユーザーID）を取得する
     # https://developers.line.biz/ja/docs/line-login/verify-id-token/
-
+  
     line_user_id_token = get_line_user_id_token(code)
-
+  
     if line_user_id_token.present?
-
       url = 'https://api.line.me/oauth2/v2.1/verify'
       options = {
         body: {
-          id_token: line_user_i
-          # 本番環境では環境変数などに保
-          client_id = ENV['LINE_CLIENT_ID']
+          id_token: line_user_id_token, # 修正済み
+          client_id: ENV['LINE_CLIENT_ID'] # 環境変数から取得
+        }
       }
-
-      response = Typhoeus::Request.post(url, options)
-
+      
+      response = Typhoeus::Request.post(url, options) # ここはifの中で実行される
+  
       if response.code == 200
         JSON.parse(response.body)['sub']
       else
         nil
       end
-    
+  
     else
       nil
     end
-
   end
 
   def get_line_user_id_token(code)
-
     # ユーザーのアクセストークン（IDトークン）を取得する
     # https://developers.line.biz/ja/reference/line-login/#issue-access-token
-
+  
     url = 'https://api.line.me/oauth2/v2.1/token'
     redirect_uri = line_login_api_callback_url
-
+  
     options = {
       headers: {
         'Content-Type' => 'application/x-www-form-urlencoded'
@@ -103,12 +99,13 @@ class LineLoginApiController < ApplicationController
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: redirect_uri,
-        client_id = ENV['LINE_CLIENT_ID'], # 本番環境では環境変数などに保管
-        client_secret = ENV['LINE_CLIENT_SECRET'] # 本番環境では環境変数などに保管
+        client_id: ENV['LINE_CLIENT_ID'],  # 環境変数から取得
+        client_secret: ENV['LINE_CLIENT_SECRET'] # 環境変数から取得
       }
     }
+  
     response = Typhoeus::Request.post(url, options)
-
+  
     if response.code == 200
       JSON.parse(response.body)['id_token'] # ユーザー情報を含むJSONウェブトークン（JWT）
     else
