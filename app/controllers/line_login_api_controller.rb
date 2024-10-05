@@ -15,7 +15,7 @@ class LineLoginApiController < ApplicationController
 
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
-    client_id = '2006417879' #本番環境では環境変数などに保管する
+    client_id = ENV['LINE_CLIENT_ID'] #本番環境では環境変数などに保管する
     redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
@@ -69,7 +69,7 @@ class LineLoginApiController < ApplicationController
       options = {
         body: {
           id_token: line_user_id_token,
-          client_id: '2006417879' # 本番環境では環境変数などに保管
+          client_id = ENV['LINE_CLIENT_ID'] # 本番環境では環境変数などに保管
         }
       }
 
@@ -103,8 +103,8 @@ class LineLoginApiController < ApplicationController
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: redirect_uri,
-        client_id: '2006417879', # 本番環境では環境変数などに保管
-        client_secret: '48fc82237ee50506236cd20e1eb1450d' # 本番環境では環境変数などに保管
+        client_id = ENV['LINE_CLIENT_ID'], # 本番環境では環境変数などに保管
+        client_secret = ENV['LINE_CLIENT_SECRET'] # 本番環境では環境変数などに保管
       }
     }
     response = Typhoeus::Request.post(url, options)
