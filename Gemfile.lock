@@ -113,6 +113,7 @@ GEM
     debug_inspector (1.2.0)
     diff-lcs (1.5.1)
     docile (1.4.1)
+    dotenv (3.1.4)
     drb (2.2.1)
     erubi (1.13.0)
     ethon (0.16.0)
@@ -341,6 +342,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dotenv
   factory_bot_rails
   jbuilder
   jsbundling-rails

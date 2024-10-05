@@ -83,3 +83,4 @@ end
 gem 'active_hash'
 gem 'meta-tags'
 gem 'typhoeus'
+gem 'dotenv'
