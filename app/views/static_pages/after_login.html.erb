@@ -14,16 +14,12 @@
       <div class="p-4">
         <div class="container mx-auto text-center">
         <% current_user = User.find_by(id: session[:user_id]) %>
-        
-
         <p>ID: <%= current_user.id %></p>
         <p>LINEユーザー名: <%= current_user.name %></p>
-
-
-          <%= link_to '診断スタート', diagnoses_path, class: "btn glass" %>
+          <%= link_to '診断スタート', diagnoses_path, class: "btn bg-silver" %>
           <h6 class="text-2xl p-4">おことの情報</h6>
-          <%= link_to "ことについて", okotos_path, class: "btn glass" %>
-          <%= link_to "おことの演奏技法", plays_okotos_path, class: "btn glass" %>
+          <%= link_to "ことについて", okotos_path, class: "btn bg-silver " %>
+          <%= link_to "おことの演奏技法", plays_okotos_path, class: "btn bg-silver" %>
           <div class="w-full flex justify-center">
         </div>
       </div>
