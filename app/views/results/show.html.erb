@@ -34,6 +34,10 @@
     <% end %>
   </div>
   <div class="mt-4">
-    <%= link_to 'トップページに戻る', root_path, class: 'btn btn-outline btn-info' %>
+    <% if logged_in? %>  <!-- ユーザーがログインしているか確認 -->
+      <%= link_to 'トップページに戻る', after_login_path, class: "btn bg-silver" %>
+    <% else %>
+      <%= link_to 'トップページに戻る', root_path, class: "btn bg-silver" %>
+    <% end %>
   </div>
 </div>
