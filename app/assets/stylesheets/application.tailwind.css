@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* buttonスタイルをまとめた .btn クラス */
+.btn {
+    /* テキストの色とフォントスタイル */
+    color: rgb(18, 17, 17);
+    font-weight: 600; /* font-semiboldに相当 */
+  
+    /* パディング */
+    padding-top: 0.5rem;   /* py-2に相当 */
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;    /* px-4に相当 */
+    padding-right: 1rem;
+  
+    /* ボーダーの角を丸く */
+    border-radius: 0.5rem; /* rounded-lgに相当 */
+  
+    /* シャドウ */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lgに相当 */
+  
+    /* ホバー時のシャドウ */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* transition-transformとhover:shadow-2xlをまとめる */
+  
+    /* フォーカス時のリング */
+    outline: none;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease; /* focus:ring-2とfocus:ring-gray-400をまとめる */
+  }
+  
+  .btn:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); /* hover:shadow-2xl */
+    transform: scale(1.05); /* hover:scale-105 */
+  }
+  
+  .btn:focus {
+    border-color: #9CA3AF; /* focus:ring-gray-400 */
+    outline: 2px solid rgba(0, 0, 0, 0.1); /* focus:ring-offset-2 */
+  }
+
+/* Noto Serif JPフォントを全体に適用 */
+body {
+    font-family: 'Noto Serif JP', serif;
+  }
+  
+  
