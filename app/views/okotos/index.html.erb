@@ -5,7 +5,7 @@
     <title>おことの情報</title>
   </head>
   
-  <body>
+<body>
   <div style="background-image: url('<%= asset_path('orenjisakura.png') %>'); background-repeat: repeat;">
     <div class="container mx-auto text-center">
       <div class="p-4">
@@ -33,11 +33,14 @@
             allowfullscreen>
           </iframe>
       </div>
-      <div class="mt-4">
-        <%= link_to 'トップページに戻る', root_path, class: 'btn btn-outline btn-info' %>
-      </div>
+        <div class="mt-4">
+        <% if logged_in? %>  <!-- ユーザーがログインしているか確認 -->
+          <%= link_to 'トップページに戻る', after_login_path, class: "btn bg-silver" %>
+        <% else %>
+          <%= link_to 'トップページに戻る', root_path, class: "btn bg-silver" %>
+        <% end %>
+        </div>
     </div>
-    </div>
-    </div>
-  </body> 
+  </div>
+</body> 
 </html>
