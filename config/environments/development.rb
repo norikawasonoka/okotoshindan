@@ -75,4 +75,7 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
   #config.hosts << clear
+  
+  #config.logger = Logger.new(STDOUT)
+  #config.log_level = :debug  # 詳細なログを出力するために :debug に設定
 end
