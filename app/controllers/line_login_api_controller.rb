@@ -28,15 +28,29 @@ class LineLoginApiController < ApplicationController
   def callback
     # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
     if params[:state] == session[:state]
-      line_user_id = get_line_user_id(params[:code])
-      line_user_name = get_line_user_id(params[:code])
-      user = User.find_or_initialize_by(line_user_id: line_user_id)
-
-      if user.save
-        session[:user_id] = user.id
-        redirect_to after_login_path, notice: 'ログインしました'
+      access_token_data = get_access_token(params[:code])
+      
+      if access_token_data.present?
+        access_token = access_token_data['access_token']
+        line_user_profile = get_line_user_profile(access_token)
+  
+        if line_user_profile.present?
+          line_user_id = line_user_profile['userId']  # ユーザーID
+          user_name = line_user_profile['displayName'] # 表示名（ユーザー名）
+          
+          user = User.find_or_initialize_by(line_user_id: line_user_id)
+          user.name = user_name  # ユーザー名を保存
+          if user.save
+            session[:user_id] = user.id
+            redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
+          else
+            redirect_to root_path, notice: 'ログインに失敗しました'
+          end
+        else
+          redirect_to root_path, notice: 'プロフィール情報を取得できませんでした'
+        end
       else
-        redirect_to root_path, notice: 'ログインに失敗しました'
+        redirect_to root_path, notice: 'アクセストークンの取得に失敗しました'
       end
     else
       redirect_to root_path, notice: '不正なアクセスです'
@@ -67,7 +81,8 @@ class LineLoginApiController < ApplicationController
       options = {
         body: {
           id_token: line_user_id_token, # 修正済み
-          client_id: ENV['LINE_CLIENT_ID'] # 環境変数から取得
+          client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
+          scope: 'profile%20openid', # 修正済み
         }
       }
       
@@ -100,7 +115,8 @@ class LineLoginApiController < ApplicationController
         code: code,
         redirect_uri: redirect_uri,
         client_id: ENV['LINE_CLIENT_ID'],  # 環境変数から取得
-        client_secret: ENV['LINE_CLIENT_SECRET'] # 環境変数から取得
+        client_secret: ENV['LINE_CLIENT_SECRET'], # 環境変数から取得
+        scope: 'profile%20openid',
       }
     }
   
@@ -112,4 +128,47 @@ class LineLoginApiController < ApplicationController
       nil
     end
   end
+  
+  # LINEのユーザー情報を取得するメソッド
+  # LINEのアクセストークンを使ってユーザー情報を取得するメソッド
+  def get_line_user_profile(access_token)
+    url = 'https://api.line.me/v2/profile'
+    response = Typhoeus.get(url, headers: { 'Authorization' => "Bearer #{access_token}" })
+
+    if response.success?
+      JSON.parse(response.body)  # レスポンスのJSONを解析して返す
+    else
+      Rails.logger.error("LINE Profile fetch failed: #{response.code} - #{response.body}")
+      nil
+    end
+  end
+
+  
+
+  # 認可コードを使ってアクセストークンを取得するメソッド
+  def get_access_token(code)
+    url = 'https://api.line.me/oauth2/v2.1/token'
+    redirect_uri = line_login_api_callback_url  # コールバックURLを設定
+  
+    options = {
+      headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
+      body: {
+        grant_type: 'authorization_code',
+        code: code,  # 認可コード
+        redirect_uri: redirect_uri,  # リダイレクトURI
+        client_id: ENV['LINE_CLIENT_ID'],
+        client_secret: ENV['LINE_CLIENT_SECRET'],
+      }
+    }
+  
+    # アクセストークンを取得
+    response = Typhoeus::Request.post(url, options)
+  
+    if response.code == 200
+      JSON.parse(response.body)  # アクセストークンのレスポンスを返す
+    else
+      Rails.logger.error("Failed to get access token: #{response.code} - #{response.body}")
+      nil
+    end
+  end  
 end
