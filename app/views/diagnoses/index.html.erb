@@ -9,7 +9,7 @@
     </div>
     <% Diagnosis.where(id: [1, 2]).each do |diagnosis| %>
       <label>
-        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id), class: "btn bg-silver" %>
       </label>
     <% end %>
   <% end %>

@@ -7,11 +7,11 @@
   <% Diagnosis.where(id: [3, 4, 5]).each do |diagnosis| %>
     <label>
       <% if diagnosis.id == 3 %>
-        <%= link_to diagnosis.title, result_path(1), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(1), class: "btn bg-silver" %>
       <% elsif diagnosis.id == 4 %>
-        <%= link_to diagnosis.title, result_path(2), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(2), class: "btn bg-silver" %>
       <% elsif diagnosis.id == 5 %>
-        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id),class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, diagnosis_path(id: diagnosis.id),class: "btn bg-silver" %>
       <% end %>
     </label>
   <% end %>
@@ -22,9 +22,9 @@
   <% Diagnosis.where(id: [6, 7]).each do |diagnosis| %>
     <label>
       <% if diagnosis.id == 6 %>
-        <%= link_to diagnosis.title, result_path(6), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(6), class: "btn bg-silver" %>
       <% elsif diagnosis.id == 7 %>
-        <%= link_to diagnosis.title, result_path(7), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(7), class: "btn bg-silver" %>
       <% end %> <!-- ここを修正してendを追加 -->
     </label>
   <% end %>
@@ -35,11 +35,11 @@
   <% Diagnosis.where(id: [8, 9, 10]).each do |diagnosis| %>
     <label>
       <% if diagnosis.id == 8 %>
-        <%= link_to diagnosis.title, result_path(3), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(3), class: "btn bg-silver" %>
       <% elsif diagnosis.id == 9 %>
-        <%= link_to diagnosis.title, result_path(4), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(4), class: "btn bg-silver" %>
       <% elsif diagnosis.id == 10 %>
-        <%= link_to diagnosis.title, result_path(5), class: "btn btn-outline btn-info" %>
+        <%= link_to diagnosis.title, result_path(5), class: "btn bg-silver" %>
       <% end %> <!-- ここもendを追加 -->
     </label>
   <% end %>
