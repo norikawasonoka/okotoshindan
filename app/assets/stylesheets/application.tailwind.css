@@ -39,9 +39,7 @@
     outline: 2px solid rgba(0, 0, 0, 0.1); /* focus:ring-offset-2 */
   }
 
-/* Noto Serif JPフォントを全体に適用 */
+/* Yuji Syuku Serif JPフォントを全体に適用 */
 body {
-    font-family: 'Noto Serif JP', serif;
+    font-family: "Yuji Syuku", serif;
   }
-  
-  
