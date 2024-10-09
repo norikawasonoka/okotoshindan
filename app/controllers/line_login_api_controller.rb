@@ -42,6 +42,10 @@ class LineLoginApiController < ApplicationController
           user.name = user_name  # ユーザー名を保存
           if user.save
             session[:user_id] = user.id
+
+              # 通知メッセージを送信
+            send_line_notification(access_token, "こんにちは、#{user_name}さん！ログインしました。")
+
             redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
           else
             redirect_to root_path, notice: 'ログインに失敗しました'
@@ -170,5 +174,38 @@ class LineLoginApiController < ApplicationController
       Rails.logger.error("Failed to get access token: #{response.code} - #{response.body}")
       nil
     end
-  end  
+  end
+
+  # ユーザーへの通知を送信するメソッド
+  def send_line_notification(line_user_profile, message)
+    url = 'https://api.line.me/v2/bot/message/push'
+    
+    # メッセージのデータ
+    message_data = {
+      to: line_user_profile['userId'],  # 取得したユーザーIDを指定
+      messages: [
+        {
+          type: 'text',
+          text: message
+        }
+      ]
+    }
+
+    options = {
+      headers: {
+        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}",  # 適切なアクセストークンを使用
+        'Content-Type' => 'application/json'
+      },
+      body: message_data.to_json
+    }
+
+    # メッセージ送信リクエスト
+    response = Typhoeus::Request.post(url, options)
+
+    if response.code == 200
+      Rails.logger.info("通知が正常に送信されました: #{message}")
+    else
+      Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
+    end
+  end
 end
