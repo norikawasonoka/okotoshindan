@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/after_login', to: 'static_pages#after_login', as: 'after_login'
   # LINEログイン関連のルーティング
   get 'line_login_api/login', to: 'line_login_api#login'
-  post 'line_login_api/callback', to: 'line_login_api#callback'
+  get 'line_login_api/callback', to: 'line_login_api#callback'
   delete 'line_login_api/destroy', to: 'line_login_api#destroy'
   # LINEのWebhookイベントを受け取るエンドポイント
   post 'line_webhooks/callback', to: 'line_webhooks#callback'
