@@ -45,7 +45,8 @@ class LineLoginApiController < ApplicationController
 
               # 通知メッセージを送信
             send_line_notification(access_token, "こんにちは、#{user_name}さん！ログインしました。")
-
+             # ここで全ユーザーに「新曲追加しました」の通知を送信
+            notify_all_users_about_new_song
             redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
           else
             redirect_to root_path, notice: 'ログインに失敗しました'
@@ -206,6 +207,17 @@ class LineLoginApiController < ApplicationController
       Rails.logger.info("通知が正常に送信されました: #{message}")
     else
       Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
+    end
+  end
+
+   # 新曲追加通知を全ユーザーに送信するメソッド
+  def notify_all_users_about_new_song
+    # ユーザー全員を取得
+    users = User.where.not(line_user_id: nil)
+
+    # 各ユーザーに通知を送信
+    users.each do |user|
+      send_line_notification(user.line_user_id, '新曲が追加されました！ぜひチェックしてみてください。')
     end
   end
 end
