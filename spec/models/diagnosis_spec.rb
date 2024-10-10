@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Diagnosis, type: :model do
   describe 'バリデーション' do
     it 'titleが存在する場合、有効であること' do
-      diagnosis = Diagnosis.new(title: "Valid Title")
+      diagnosis = Diagnosis.new(title: 'Valid Title')
       expect(diagnosis).to be_valid
     end
 

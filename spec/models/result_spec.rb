@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Result, type: :model do
   describe 'バリデーション' do
     it 'titleが存在する場合、有効であること' do
       diagnosis = FactoryBot.create(:diagnosis) # Diagnosisのファクトリを使って診断を作成
-      result = Result.new(title: "Valid Title", diagnosis: diagnosis)
+      result = Result.new(title: 'Valid Title', diagnosis:)
       expect(result).to be_valid
     end
 

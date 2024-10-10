@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :result do
-    title { "Sample Title" }
+    title { 'Sample Title' }
     association :diagnosis
   end
 end

@@ -37,7 +37,6 @@ class ResultsController < ApplicationController
   end
 
   def fetch_youtube_embed_codes(result_id)
-    YoutubeVideo.where(result_id: result_id)
+    YoutubeVideo.where(result_id:)
   end
 end
-

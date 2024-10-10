@@ -54,13 +54,13 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rubocop', '~> 1.65', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -81,6 +81,6 @@ group :test do
 end
 
 gem 'active_hash'
+gem 'dotenv'
 gem 'meta-tags'
 gem 'typhoeus'
-gem 'dotenv'
