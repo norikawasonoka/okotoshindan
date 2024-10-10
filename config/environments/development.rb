@@ -76,7 +76,7 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
   #config.hosts << '25f5-111-67-178-117.ngrok-free.app'
   config.hosts.clear
-  
+  config.log_level = :debug
+
   #config.logger = Logger.new(STDOUT)
-  #config.log_level = :debug  # 詳細なログを出力するために :debug に設定
 end

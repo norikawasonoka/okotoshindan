@@ -44,7 +44,7 @@ class LineLoginApiController < ApplicationController
             session[:user_id] = user.id
 
               # 通知メッセージを送信
-            send_line_notification(access_token, "こんにちは、#{user_name}さん！ログインしました。")
+            send_line_notification(line_user_profile, "こんにちは、#{user_name}さん！ログインしました。")
              # ここで全ユーザーに「新曲追加しました」の通知を送信
             notify_all_users_about_new_song
             redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
@@ -200,15 +200,18 @@ class LineLoginApiController < ApplicationController
       body: message_data.to_json
     }
 
+    Rails.logger.info("Sending notification with data: #{message_data}")
+
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
+    Rails.logger.info("APIリクエスト送信: #{options}")
+    Rails.logger.info("APIレスポンス: #{response.code} - #{response.body}")
 
     if response.code == 200
       Rails.logger.info("通知が正常に送信されました: #{message}")
     else
       Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
     end
-  end
 
    # 新曲追加通知を全ユーザーに送信するメソッド
   def notify_all_users_about_new_song
