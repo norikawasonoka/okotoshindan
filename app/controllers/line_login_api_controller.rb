@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Represents the controller for LineLoginApi.
 class LineLoginApiController < ApplicationController
   require 'json'
   require 'typhoeus'
@@ -15,50 +18,73 @@ class LineLoginApiController < ApplicationController
 
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
-    client_id = ENV['LINE_CLIENT_ID'] #本番環境では環境変数などに保管する
+    client_id = ENV['LINE_CLIENT_ID'] # 本番環境では環境変数などに保管する
     redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
-    scope = 'profile%20openid' #ユーザーに付与を依頼する権限
+    scope = 'profile%20openid' # ユーザーに付与を依頼する権限
 
-    authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
+    authorization_url = "#{base_authorization_url}?response_type=#{response_type}" \
+                   "&client_id=#{client_id}&redirect_uri=#{redirect_uri}" \
+                   "&state=#{state}&scope=#{scope}"
 
     redirect_to authorization_url, allow_other_host: true
   end
 
+  # callbackアクション: LINEログイン後のリダイレクト先
   def callback
-    # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
+    # CSRF対策のトークンが一致するか確認
     if params[:state] == session[:state]
-      access_token_data = get_access_token(params[:code])
-      
-      if access_token_data.present?
-        access_token = access_token_data['access_token']
-        line_user_profile = get_line_user_profile(access_token)
-  
-        if line_user_profile.present?
-          line_user_id = line_user_profile['userId']  # ユーザーID
-          user_name = line_user_profile['displayName'] # 表示名（ユーザー名）
-          
-          user = User.find_or_initialize_by(line_user_id: line_user_id)
-          user.name = user_name  # ユーザー名を保存
-          if user.save
-            session[:user_id] = user.id
-
-              # 通知メッセージを送信
-            send_line_notification(line_user_profile, "こんにちは、#{user_name}さん！ログインしました。")
-             # ここで全ユーザーに「新曲追加しました」の通知を送信
-            notify_all_users_about_new_song
-            redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
-          else
-            redirect_to root_path, notice: 'ログインに失敗しました'
-          end
-        else
-          redirect_to root_path, notice: 'プロフィール情報を取得できませんでした'
-        end
-      else
-        redirect_to root_path, notice: 'アクセストークンの取得に失敗しました'
-      end
+      # トークンが一致した場合、アクセストークンを取得する処理に移る
+      handle_valid_state(params[:code])
     else
+      # トークンが一致しない場合、不正なアクセスとしてリダイレクト
       redirect_to root_path, notice: '不正なアクセスです'
+    end
+  end
+
+  # トークンが一致した場合、アクセストークンを取得
+  def handle_valid_state(code)
+    access_token_data = get_access_token(code)
+    if access_token_data.present?
+      # アクセストークンを取得できた場合、ユーザープロフィールの取得処理に移る
+      access_token = access_token_data['access_token']
+      handle_access_token(access_token)
+    else
+      # アクセストークンを取得できなかった場合、エラーメッセージを表示
+      redirect_to root_path, notice: 'アクセストークンの取得に失敗しました'
+    end
+  end
+
+  # アクセストークンがある場合、LINEユーザーのプロフィールを取得
+  def handle_access_token(access_token)
+    line_user_profile = get_line_user_profile(access_token)
+    if line_user_profile.present?
+      # プロフィール情報を取得できた場合、ユーザー情報の保存処理に移る
+      line_user_id = line_user_profile['userId']
+      user_name = line_user_profile['displayName']
+      handle_user_profile(line_user_id, user_name, line_user_profile)
+    else
+      # プロフィール情報を取得できなかった場合、エラーメッセージを表示
+      redirect_to root_path, notice: 'プロフィール情報を取得できませんでした'
+    end
+  end
+
+  # ユーザー情報を保存し、ログイン状態にする
+  def handle_user_profile(line_user_id, user_name, line_user_profile)
+    user = User.find_or_initialize_by(line_user_id:)
+    user.name = user_name
+    if user.save
+      # ユーザー情報を保存できた場合、セッションにユーザーIDを格納
+      session[:user_id] = user.id
+      # LINE通知を送信
+      send_line_notification(line_user_profile, "こんにちは、#{user_name}さん！ログインしました。")
+      # 全ユーザーに新曲追加の通知を送信
+      notify_all_users_about_new_song
+      # ログイン後のリダイレクト
+      redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
+    else
+      # ユーザー情報を保存できなかった場合、エラーメッセージを表示
+      redirect_to root_path, notice: 'ログインに失敗しました'
     end
   end
 
@@ -78,62 +104,55 @@ class LineLoginApiController < ApplicationController
   def get_line_user_id(code)
     # ユーザーのIDトークンからプロフィール情報（ユーザーID）を取得する
     # https://developers.line.biz/ja/docs/line-login/verify-id-token/
-  
+
     line_user_id_token = get_line_user_id_token(code)
-  
-    if line_user_id_token.present?
-      url = 'https://api.line.me/oauth2/v2.1/verify'
-      options = {
-        body: {
-          id_token: line_user_id_token, # 修正済み
-          client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
-          scope: 'profile%20openid', # 修正済み
-        }
+
+    return unless line_user_id_token.present?
+
+    url = 'https://api.line.me/oauth2/v2.1/verify'
+    options = {
+      body: {
+        id_token: line_user_id_token, # 修正済み
+        client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
+        scope: 'profile%20openid' # 修正済み
       }
-      
-      response = Typhoeus::Request.post(url, options) # ここはifの中で実行される
-  
-      if response.code == 200
-        JSON.parse(response.body)['sub']
-      else
-        nil
-      end
-  
-    else
-      nil
-    end
+    }
+
+    response = Typhoeus::Request.post(url, options) # ここはifの中で実行される
+
+    return unless response.code == 200
+
+    JSON.parse(response.body)['sub']
   end
 
   def get_line_user_id_token(code)
     # ユーザーのアクセストークン（IDトークン）を取得する
     # https://developers.line.biz/ja/reference/line-login/#issue-access-token
-  
+
     url = 'https://api.line.me/oauth2/v2.1/token'
     redirect_uri = line_login_api_callback_url
-  
+
     options = {
       headers: {
         'Content-Type' => 'application/x-www-form-urlencoded'
       },
       body: {
         grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: redirect_uri,
-        client_id: ENV['LINE_CLIENT_ID'],  # 環境変数から取得
+        code:,
+        redirect_uri:,
+        client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
         client_secret: ENV['LINE_CLIENT_SECRET'], # 環境変数から取得
-        scope: 'profile%20openid',
+        scope: 'profile%20openid'
       }
     }
-  
+
     response = Typhoeus::Request.post(url, options)
-  
-    if response.code == 200
-      JSON.parse(response.body)['id_token'] # ユーザー情報を含むJSONウェブトークン（JWT）
-    else
-      nil
-    end
+
+    return unless response.code == 200
+
+    JSON.parse(response.body)['id_token'] # ユーザー情報を含むJSONウェブトークン（JWT）
   end
-  
+
   # LINEのユーザー情報を取得するメソッド
   # LINEのアクセストークンを使ってユーザー情報を取得するメソッド
   def get_line_user_profile(access_token)
@@ -141,36 +160,34 @@ class LineLoginApiController < ApplicationController
     response = Typhoeus.get(url, headers: { 'Authorization' => "Bearer #{access_token}" })
 
     if response.success?
-      JSON.parse(response.body)  # レスポンスのJSONを解析して返す
+      JSON.parse(response.body) # レスポンスのJSONを解析して返す
     else
       Rails.logger.error("LINE Profile fetch failed: #{response.code} - #{response.body}")
       nil
     end
   end
 
-  
-
   # 認可コードを使ってアクセストークンを取得するメソッド
   def get_access_token(code)
     url = 'https://api.line.me/oauth2/v2.1/token'
-    redirect_uri = line_login_api_callback_url  # コールバックURLを設定
-  
+    redirect_uri = line_login_api_callback_url # コールバックURLを設定
+
     options = {
       headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
       body: {
         grant_type: 'authorization_code',
-        code: code,  # 認可コード
-        redirect_uri: redirect_uri,  # リダイレクトURI
+        code:, # 認可コード
+        redirect_uri:, # リダイレクトURI
         client_id: ENV['LINE_CLIENT_ID'],
-        client_secret: ENV['LINE_CLIENT_SECRET'],
+        client_secret: ENV['LINE_CLIENT_SECRET']
       }
     }
-  
+
     # アクセストークンを取得
     response = Typhoeus::Request.post(url, options)
-  
+
     if response.code == 200
-      JSON.parse(response.body)  # アクセストークンのレスポンスを返す
+      JSON.parse(response.body) # アクセストークンのレスポンスを返す
     else
       Rails.logger.error("Failed to get access token: #{response.code} - #{response.body}")
       nil
@@ -180,10 +197,10 @@ class LineLoginApiController < ApplicationController
   # ユーザーへの通知を送信するメソッド
   def send_line_notification(line_user_profile, message)
     url = 'https://api.line.me/v2/bot/message/push'
-    
+
     # メッセージのデータ
     message_data = {
-      to: line_user_profile['userId'],  # 取得したユーザーIDを指定
+      to: line_user_profile['userId'], # 取得したユーザーIDを指定
       messages: [
         {
           type: 'text',
@@ -194,7 +211,7 @@ class LineLoginApiController < ApplicationController
 
     options = {
       headers: {
-        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}",  # 適切なアクセストークンを使用
+        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
         'Content-Type' => 'application/json'
       },
       body: message_data.to_json
@@ -218,10 +235,11 @@ class LineLoginApiController < ApplicationController
   def notify_all_users_about_new_song
     # ユーザー全員を取得
     users = User.where.not(line_user_id: nil)
-
+  
     # 各ユーザーに通知を送信
     users.each do |user|
-      send_line_notification(user.line_user_id, '新曲が追加されました！ぜひチェックしてみてください。')
+      # ユーザーIDを正しく取得して渡す
+      send_line_notification({ 'userId' => user.line_user_id }, '新曲が追加されました！ぜひチェックしてみてください。')
     end
   end
 end

@@ -1,34 +1,35 @@
+# frozen_string_literal: true
+
+# Represents the controller for LineWebhooks.
 class LineWebhooksController < ApplicationController
-  skip_before_action :verify_authenticity_token  # CSRF対策をスキップ
+  skip_before_action :verify_authenticity_token # CSRF対策をスキップ
   skip_before_action :require_login, only: [:callback]
 
   # LINEからのWebhookイベントを受け取るアクション
   def callback
     # 受信したWebhookイベントをログに出力
-    logger.info "### Received Webhook Event ###"
+    logger.info '### Received Webhook Event ###'
     logger.info "Event Params: #{params.inspect}"
 
     # リクエストボディの内容を取得
     body = request.body.read
-    events = JSON.parse(body)['events']  # events はLINEから送られてくるイベント
+    events = JSON.parse(body)['events'] # events はLINEから送られてくるイベント
 
     # イベントごとに処理
     events.each do |event|
       # メッセージイベントを受信したとき
-      if event['type'] == 'message'
-        user_id = event['source']['userId']
-        message = event['message']['text']
+      next unless event['type'] == 'message'
 
-        # LINE Botの管理者のIDからのメッセージかどうかを判定
-        if user_id == ENV['LINE_ADMIN_USER_ID']
-          # 管理者から「新曲追加」メッセージが送信された場合
-          if message.include?('新曲追加')
-             notify_all_users_about_new_song
-          end
-        else
-          # それ以外のユーザーのメッセージに対して通常の返信
-          send_line_message(user_id, "こんにちは！あなたのメッセージは「#{message}」です。")
-        end
+      user_id = event['source']['userId']
+      message = event['message']['text']
+
+      # LINE Botの管理者のIDからのメッセージかどうかを判定
+      if user_id == ENV['LINE_ADMIN_USER_ID']
+        # 管理者から「新曲追加」メッセージが送信された場合
+        notify_all_users_about_new_song if message.include?('新曲追加')
+      else
+        # それ以外のユーザーのメッセージに対して通常の返信
+        send_line_message(user_id, "こんにちは！あなたのメッセージは「#{message}」です。")
       end
     end
 
@@ -70,16 +71,16 @@ class LineWebhooksController < ApplicationController
     end
   end
 
-  # 全ユーザーに「新曲が追加されました」通知を送信するメソッド
+  # 新曲追加通知を全ユーザーに送信するメソッド
   def notify_all_users_about_new_song
-    # 登録している全ユーザーを取得
+    # ユーザー全員を取得
     users = User.where.not(line_user_id: nil)
-
+  
     # 各ユーザーに通知を送信
     users.each do |user|
-      send_line_message(user.line_user_id, '新曲が追加されました！ぜひチェックしてみてください。')
+      # ユーザーIDを正しく取得して渡す
+      send_line_notification({ 'userId' => user.line_user_id }, '新曲が追加されました！ぜひチェックしてみてください。')
     end
-
-    Rails.logger.info "Notification sent to all users about new song."
+    Rails.logger.info 'Notification sent to all users about new song.'
   end
 end
