@@ -212,6 +212,7 @@ class LineLoginApiController < ApplicationController
     else
       Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
     end
+  end
 
    # 新曲追加通知を全ユーザーに送信するメソッド
   def notify_all_users_about_new_song
