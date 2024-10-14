@@ -76,15 +76,13 @@ class LineLoginApiController < ApplicationController
     if user.save
       # ユーザー情報を保存できた場合、セッションにユーザーIDを格納
       session[:user_id] = user.id
-      # 全ユーザーに新曲追加の通知を送信
-      notify_all_users_about_new_song
       # ログイン後のリダイレクト
       redirect_to after_login_path, notice: "#{user_name}さん、ログインしました"
     else
       # ユーザー情報を保存できなかった場合、エラーメッセージを表示
       redirect_to root_path, notice: 'ログインに失敗しました'
     end
-  end
+  end  
 
   def add_new_video_and_notify(title)
     # 新しいビデオを追加
@@ -160,7 +158,6 @@ class LineLoginApiController < ApplicationController
     JSON.parse(response.body)['id_token'] # ユーザー情報を含むJSONウェブトークン（JWT）
   end
 
-  # LINEのユーザー情報を取得するメソッド
   # LINEのアクセストークンを使ってユーザー情報を取得するメソッド
   def get_line_user_profile(access_token)
     url = 'https://api.line.me/v2/profile'
@@ -202,9 +199,10 @@ class LineLoginApiController < ApplicationController
   end
 
   # ユーザーへの通知を送信するメソッド
+  # ユーザーへの通知を送信するメソッド
   def send_line_notification(line_user_profile, message)
     url = 'https://api.line.me/v2/bot/message/push'
-
+    
     # メッセージのデータ
     message_data = {
       to: line_user_profile['userId'], # 取得したユーザーIDを指定
@@ -215,7 +213,7 @@ class LineLoginApiController < ApplicationController
         }
       ]
     }
-
+    
     options = {
       headers: {
         'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
@@ -225,12 +223,12 @@ class LineLoginApiController < ApplicationController
     }
 
     Rails.logger.info("Sending notification with data: #{message_data}")
-
+    Rails.logger.info("API request options: #{options}")
+    
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
-    Rails.logger.info("APIリクエスト送信: #{options}")
-    Rails.logger.info("APIレスポンス: #{response.code} - #{response.body}")
-
+    Rails.logger.info("API response: #{response.code} - #{response.body}")
+    
     if response.code == 200
       Rails.logger.info("通知が正常に送信されました: #{message}")
     else
@@ -238,11 +236,16 @@ class LineLoginApiController < ApplicationController
     end
   end
 
-   # 新曲追加通知を全ユーザーに送信するメソッド
-   def notify_all_users_about_new_song
+  # 新曲追加通知を全ユーザーに送信するメソッド
+  def notify_all_users_about_new_song
     # ユーザー全員を取得
     users = User.where.not(line_user_id: nil)
-  
-   
-  end  
+
+    # 各ユーザーに通知を送信
+    users.each do |user|
+      Rails.logger.info("Sending notification to user: #{user.line_user_id}")
+      send_line_notification
+    end
+    Rails.logger.info 'Notification sent to all users about new song.'
+  end
 end

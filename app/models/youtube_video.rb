@@ -71,6 +71,30 @@ class YoutubeVideo < ActiveHash::Base
       </iframe>'
     },
     {
+      id: 24,
+      result_id: 2,
+      title: '「さくらさくら　箏独奏」（編曲：稲葉美和）',
+      description: '最初から迫力があり桜の花びらがたくさん舞い散る光景が見えます',
+      embed_code: '<iframe src="https://www.youtube.com/embed/dR2HKQX1jd4"
+      title="さくらさくら　箏独奏　編曲：稲葉美和"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
+      </iframe>'
+    },
+    {
+      id: 25,
+      result_id: 2,
+      title: '「さくら変奏曲」',
+      description: '最初から迫力があり桜の花びらがたくさん舞い散る光景が見えます',
+      embed_code: '<iframe src="https://www.youtube.com/embed/MKmWDL1wJvA"
+      title="Japanese Koto さくら変奏曲/Sakura hensokyoku（Theme and Variations on the Sakura Melody)"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
+      </iframe>'
+    },
+    {
       id: 7,
       result_id: 3,
       title: 'この音とまれ! / 「天泣」',
