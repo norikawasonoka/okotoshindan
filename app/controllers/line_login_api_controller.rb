@@ -71,13 +71,11 @@ class LineLoginApiController < ApplicationController
 
   # ユーザー情報を保存し、ログイン状態にする
   def handle_user_profile(line_user_id, user_name, line_user_profile)
-    user = User.find_or_initialize_by(line_user_id:)
+    user = User.find_or_initialize_by(line_user_id: line_user_id)
     user.name = user_name
     if user.save
       # ユーザー情報を保存できた場合、セッションにユーザーIDを格納
       session[:user_id] = user.id
-      # LINE通知を送信
-      send_line_notification(line_user_profile, "こんにちは、#{user_name}さん！ログインしました。")
       # 全ユーザーに新曲追加の通知を送信
       notify_all_users_about_new_song
       # ログイン後のリダイレクト
@@ -86,6 +84,15 @@ class LineLoginApiController < ApplicationController
       # ユーザー情報を保存できなかった場合、エラーメッセージを表示
       redirect_to root_path, notice: 'ログインに失敗しました'
     end
+  end
+
+  def add_new_video_and_notify(title)
+    # 新しいビデオを追加
+    new_id = YoutubeVideo.data.last[:id] + 1
+    YoutubeVideo.data << { id: new_id, title: title }
+
+    # 新曲追加通知を全ユーザーに送信
+    notify_all_users_about_new_song
   end
 
   # ログアウト処理
@@ -232,14 +239,10 @@ class LineLoginApiController < ApplicationController
   end
 
    # 新曲追加通知を全ユーザーに送信するメソッド
-  def notify_all_users_about_new_song
+   def notify_all_users_about_new_song
     # ユーザー全員を取得
     users = User.where.not(line_user_id: nil)
   
-    # 各ユーザーに通知を送信
-    users.each do |user|
-      # ユーザーIDを正しく取得して渡す
-      send_line_notification({ 'userId' => user.line_user_id }, '新曲が追加されました！ぜひチェックしてみてください。')
-    end
-  end
+   
+  end  
 end
