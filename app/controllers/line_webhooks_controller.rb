@@ -5,7 +5,6 @@ class LineWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token # CSRF対策をスキップ
   skip_before_action :require_login, only: [:callback]
 
-  # LINEからのWebhookイベントを受け取るアクション
   def callback
     # 受信したWebhookイベントをログに出力
     logger.info '### Received Webhook Event ###'
@@ -31,9 +30,17 @@ class LineWebhooksController < ApplicationController
     render json: { status: 'ok' }, status: :ok
   end
 
+  def add_new_video_and_notify(title)
+    # 新しいビデオを追加
+    new_id = YoutubeVideo.data.last[:id] + 1
+    YoutubeVideo.data << { id: new_id, title: title }
+
+    # 新曲追加通知を全ユーザーに送信
+    notify_all_users_about_new_song
+  end
+
   private
 
-  # LINEにメッセージを送信するメソッド
   def send_line_message(user_id, message)
     url = 'https://api.line.me/v2/bot/message/push'
     access_token = ENV['LINE_BOT_CHANNEL_ACCESS_TOKEN']
@@ -62,6 +69,43 @@ class LineWebhooksController < ApplicationController
     end
   end
 
+  # ユーザーへの通知を送信するメソッド
+  def send_line_notification(line_user_profile, message)
+    url = 'https://api.line.me/v2/bot/message/push'
+    
+    # メッセージのデータ
+    message_data = {
+      to: line_user_profile['userId'], # 取得したユーザーIDを指定
+      messages: [
+        {
+          type: 'text',
+          text: message
+        }
+      ]
+    }
+    
+    options = {
+      headers: {
+        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
+        'Content-Type' => 'application/json'
+      },
+      body: message_data.to_json
+    }
+
+    Rails.logger.info("Sending notification with data: #{message_data}")
+    Rails.logger.info("API request options: #{options}")
+    
+    # メッセージ送信リクエスト
+    response = Typhoeus::Request.post(url, options)
+    Rails.logger.info("API response: #{response.code} - #{response.body}")
+    
+    if response.code == 200
+      Rails.logger.info("通知が正常に送信されました: #{message}")
+    else
+      Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
+    end
+  end
+
   # 新曲追加通知を全ユーザーに送信するメソッド
   def notify_all_users_about_new_song
     # ユーザー全員を取得
@@ -69,19 +113,9 @@ class LineWebhooksController < ApplicationController
 
     # 各ユーザーに通知を送信
     users.each do |user|
-      # ユーザーIDを正しく取得して渡す
+      Rails.logger.info("Sending notification to user: #{user.line_user_id}")
       send_line_notification({ 'userId' => user.line_user_id }, '新曲が追加されました！ぜひチェックしてみてください。')
     end
     Rails.logger.info 'Notification sent to all users about new song.'
-  end
-
-  # 新曲追加と全ユーザーへの通知を行うメソッド
-  def add_new_video_and_notify(title)
-    # 新しいビデオを追加
-    new_id = YoutubeVideo.data.last[:id] + 1
-    YoutubeVideo.data << { id: new_id, title: title }
-
-    # 新曲追加通知を全ユーザーに送信
-    notify_all_users_about_new_song
   end
 end
