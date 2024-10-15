@@ -38,8 +38,21 @@
     border-color: #9CA3AF; /* focus:ring-gray-400 */
     outline: 2px solid rgba(0, 0, 0, 0.1); /* focus:ring-offset-2 */
   }
-
+  .line-it-button {
+    transform: scale(2); /* ボタンを2倍に拡大 */
+  }
+  @media (max-width: 600px) {
+    .line-it-button {
+      transform: scale(1.5); /* 小さい画面ではボタンを1.5倍に拡大 */
+    }
+  }
+  @media (max-width: 400px) {
+    .line-it-button {
+      transform: scale(1); /* さらに小さい画面ではボタンの拡大を元に戻す */
+    }
+  }
 /* Yuji Syuku Serif JPフォントを全体に適用 */
 body {
     font-family: "Yuji Syuku", serif;
   }
+
