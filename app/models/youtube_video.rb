@@ -2,9 +2,11 @@
 
 # This class represents a YouTube video in the application.
 class YoutubeVideo < ActiveHash::Base
+
   self.data = [
     {
       id: 1,
+      video_id: 1,
       result_id: 1,
       title: '六段の調',
       description: '箏を弾くなら避けられない曲',
@@ -15,6 +17,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 2,
+      video_id: 2,
       result_id: 1,
       title: '春の海',
       description: 'お正月の曲です',
@@ -26,6 +29,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 3,
+      video_id: 3,
       result_id: 1,
       title: '「さくらさくら」',
       description: '誰もが知っている曲、春になるとスーパーでよく聞きますね',
@@ -37,6 +41,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 4,
+      video_id: 4,
       result_id: 2,
       title: '「春の海幻想」',
       description: 'お正月に聞く曲のアレンジ版、聞いたことあるフレーズが出てきます！',
@@ -48,6 +53,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 5,
+      video_id: 5,
       result_id: 2,
       title: '「筝曲 「さくら」箏独奏による主題と六つの変奏」',
       description: 'あの穏やかな曲がこんな激しくなるとはびっくりします！最後まで聞いてみてください',
@@ -60,6 +66,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 6,
+      video_id: 6,
       result_id: 2,
       title: '「さくら幻想曲」（編曲：河村利夫）',
       description: '大人数ならではの合奏の迫力があります。もちろん聞いたことあるフレーズもでてきます！',
@@ -72,6 +79,7 @@ class YoutubeVideo < ActiveHash::Base
     },
     {
       id: 24,
+      video_id: 24,
       result_id: 2,
       title: '「さくらさくら　箏独奏」（編曲：稲葉美和）',
       description: '最初から迫力があり桜の花びらがたくさん舞い散る光景が見えます',
@@ -299,7 +307,4 @@ class YoutubeVideo < ActiveHash::Base
       </iframe>'
     }
   ]
-
-  include ActiveHash::Associations
-  belongs_to :result # もし、resultsとの関連を持たせたいならこの行を加えるダ
 end
