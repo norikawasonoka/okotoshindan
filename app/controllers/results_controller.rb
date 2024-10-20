@@ -16,6 +16,13 @@ class ResultsController < ApplicationController
     @diagnosis = @result.diagnosis
     @youtube_embed_codes = fetch_youtube_embed_codes(@result.id)
     @youtube_videos = YoutubeVideo.where(result_id: @result.id)
+    if params[:video_id].present?
+      @video = Video.find(params[:video_id]) # Videoモデルから取得
+      @youtube_video = @video.youtube_video # 関連付けられたYoutubeVideoを取得
+    else
+      # video_idがない場合の処理（エラーハンドリングやデフォルト処理）
+      @youtube_video = @youtube_videos.first
+    end
   end
 
   def create
@@ -38,5 +45,10 @@ class ResultsController < ApplicationController
 
   def fetch_youtube_embed_codes(result_id)
     YoutubeVideo.where(result_id:)
+  end
+
+  # current_userメソッドが定義されていない場合は以下を追加
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end
