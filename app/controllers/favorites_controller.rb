@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     @video = Video.find(params[:video_id])
-    @favorite = current_user.favorites.find_by(video: @video)
+    @favorite = current_user.favorites.find_or_initialize_by(video: @video)
 
     if @favorite
       @favorite.destroy
