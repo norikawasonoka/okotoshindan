@@ -7,6 +7,7 @@
 class ApplicationController < ActionController::Base
   before_action :require_login # ログインが必要なアクションの前に require_login を呼び出す
   helper_method :logged_in? # ビューで呼び出せるように helper_method で指定
+  helper_method :current_user
 
   private
 
@@ -20,5 +21,10 @@ class ApplicationController < ActionController::Base
   # 現在のユーザーがログインしているか確認する
   def logged_in?
     !!session[:user_id] # user_id がセッションに存在すればログインしているとみなす
+  end
+
+  def current_user
+    # ここにユーザーを取得するロジックを記述する
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end
