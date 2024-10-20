@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 # Represents the controller for Favorites.
-
-
 class FavoritesController < ApplicationController
   before_action :require_login
 
@@ -38,4 +36,3 @@ class FavoritesController < ApplicationController
     end
   end
 end
-
