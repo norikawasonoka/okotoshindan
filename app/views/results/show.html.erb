@@ -28,10 +28,12 @@
             </div>
             <!-- お気に入り登録 -->
             <div>
-              <% if current_user.already_favorited?(video) %>
-                <%= button_to "好みではない", result_video_favorite_path(result_id: @result.id, video_id: video.id), method: :delete, remote: true, class: "btn bg-ungoot" %>
-              <% else %>
-                <%= button_to "良い", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, remote: true, class: "btn bg-good" %>
+              <% if current_user.present? %>
+                <% if current_user.already_favorited?(video) %>
+                  <%= button_to "好みではない", result_video_favorite_path(result_id: @result.id, video_id: video.id), method: :delete, class: "btn bg-ungoot" %>
+                <% else %>
+                  <%= button_to "良い", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, class: "btn bg-good" %>
+                <% end %>
               <% end %>
             </div>
           </div>
