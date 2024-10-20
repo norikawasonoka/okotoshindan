@@ -51,6 +51,20 @@
       transform: scale(1); /* さらに小さい画面ではボタンの拡大を元に戻す */
     }
   }
+  .favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+  }
+  
+  .favorite-button.active .material-symbols-outlined {
+    color: red; /* アクティブ状態の色 */
+  }
 /* Yuji Syuku Serif JPフォントを全体に適用 */
 body {
     font-family: "Yuji Syuku", serif;

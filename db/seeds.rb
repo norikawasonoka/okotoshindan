@@ -9,3 +9,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# YoutubeVideoがActiveHashを使用しているため、ActiveRecordとは異なる方法で処理します
+# 既存のUserとResultを取得
+# 既存のUserとResultを取得
+# 既存のUserとResultを取得
+user = User.first # 必要に応じて適切なユーザーを取得
+results = Result.all # 全ての結果を取得
+
+# YoutubeVideoデータを元にVideoレコードを作成
+YoutubeVideo.all.each do |youtube_video|
+  result = results.find_by(id: youtube_video.result_id)
+  next unless result
+
+  Video.create!(
+    title: youtube_video.title,
+    embed_code: youtube_video.embed_code,
+    youtube_video_id: youtube_video.id, # youtube_video_idとして設定
+    result_id: youtube_video.result_id
+  )
+end
+

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "favorite-button-for-video-#{@video.id}" method: :delete do %>
+  <%= render 'videos/favorite', video: @video %>
+<% end %>

@@ -5,34 +5,39 @@
     <p class="text-xl p-4"><%= @result.title %></p>
 
     <% if @youtube_embed_codes.present? %>
-      <% @youtube_embed_codes.each do |video| %>
-        <div class="youtube-container mb-4 flex flex-col items-center">
-          <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
-          <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
-            <div class="w-full max-w-lg">
-              <%= raw video[:embed_code] %> 
-            </div>
-            <div class="p-4">
-            <% if video.embed_code %>
-              <% youtube_url = video.embed_code.match(/src="([^"]+)"/)[1] %>
-            <% end %>
-            
-            <% if youtube_url %>
-              <div class="btn text-xl">
-                <%= link_to "https://twitter.com/share?url=#{CGI.escape(youtube_url)}&text=#{CGI.escape("【お箏診断】#{video.title} おすすめの曲です♪ぜひきいてみてください！！
-                https://www.okotoshindan.com/")}", 
-                            target: '_blank', title: "Xでシェア" do %>
-                  曲をXでシェアする
-                <% end %>
-              </div>
-            <% else %>
-              <p>動画が見つかりませんでした。</p>
+  <% @youtube_embed_codes.each do |video| %>
+    <div class="youtube-container mb-4 flex flex-col items-center">
+      <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
+      <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
+      <div class="w-full max-w-lg">
+        <%= raw video[:embed_code] %>
+      </div>
+      <div class="p-4">
+        <% if video.embed_code %>
+          <% youtube_url = video.embed_code.match(/src="([^"]+)"/)[1] %>
+        <% end %>
+
+        <% if youtube_url %>
+          <div class="btn text-xl">
+            <%= link_to "https://twitter.com/share?url=#{CGI.escape(youtube_url)}&text=#{CGI.escape("【お箏診断】#{video.title} おすすめの曲です♪ぜひきいてみてください！！https://www.okotoshindan.com/")}", target: '_blank', title: "Xでシェア" do %>
+              曲をXでシェアする
             <% end %>
           </div>
-        </div>
-      <% end %>
+        <% else %>
+          <p>動画が見つかりませんでした。</p>
+        <% end %>
+      </div>
+      <% if current_user.already_favorited?(video) %>
+      <%= button_to "好みではない", result_video_favorite_path(result_id: @result.id, video_id: video.id), method: :delete, remote: true, class: "btn bg-ungoot" %>
+      <% else %>
+      <%= button_to "良い", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, remote: true, class: "btn bg-good" %>
+        
+      </div>
+      
     <% end %>
-  </div>
+  <% end %>
+<% end %>
+
   <div class="mt-4">
     <% if logged_in? %>  <!-- ユーザーがログインしているか確認 -->
       <%= link_to 'トップページに戻る', after_login_path, class: "btn bg-silver" %>
