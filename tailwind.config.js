@@ -17,6 +17,8 @@ module.exports = {
         'pinku': '#fce7f3',
         'line': '#84cc16',
         'silver': '#C0C0C0', 
+        'good': '#ec4899',
+        'ungoot': '#06b6d4',
       },
     },
 
