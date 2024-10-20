@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     end
   end
   resources :diagnoses
-  resources :results, only: %i[index new create show]
+  resources :results, only: %i[index new create show] do
+    resources :videos do
+      resources :favorites, only: [:create, :destroy]
+    end
+  end
+  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
