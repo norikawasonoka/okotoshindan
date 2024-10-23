@@ -1,0 +1,3 @@
+<%= turbo_stream.update "favorite-button-container-#{@video.id}" do %>
+  <%= render partial: "favorite_button", locals: { video: @video, result: @result} %>
+<% end %>

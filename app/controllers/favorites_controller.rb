@@ -6,33 +6,34 @@ class FavoritesController < ApplicationController
 
   def create
     @video = Video.find(params[:video_id])
+    @result = @video.result
     @favorite = current_user.favorites.find_or_initialize_by(video: @video)
-  
-    if @favorite.new_record?
-      @favorite.save
+    @favorite.result_id = @result.id 
+
+    if @favorite.save
+      respond_to do |format|
+        format.turbo_stream 
+      end
     else
-      flash[:notice] = "この動画はすでにお気に入りに追加されています。"
-    end
-  
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
-      format.js  # create.js.erbを呼び出す
+      respond_to do |format|
+        format.html { redirect_to @result, alert: 'Failed to favorite.' }
+      end
     end
   end
 
   def destroy
     @video = Video.find(params[:video_id])
-    @favorite = current_user.favorites.find_or_initialize_by(video: @video)
-
-    if @favorite
-      @favorite.destroy
+    @result = @video.result
+    @favorite = current_user.favorites.find_by(video: @video)
+  
+    if @favorite&.destroy
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      flash[:error] = "お気に入りが見つかりませんでした。"
+      respond_to do |format|
+        format.html {redirect_to @result, alert: 'Failed to unfavorite.' }
+      end
     end
-
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
-      format.js  # destroy.js.erbを呼び出す
-    end
-  end
+  end     
 end
