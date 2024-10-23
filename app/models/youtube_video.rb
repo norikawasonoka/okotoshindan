@@ -12,17 +12,18 @@ class YoutubeVideo < ActiveHash::Base
       embed_code: '<iframe src="https://www.youtube.com/embed/WiMo8F6rKA8"
       title="頭上からの視点で『六段の調』iPhoneXSでの撮影"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>'
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
+      </iframe>'
     },
     {
       id: 2,
       result_id: 1,
       title: '春の海',
       description: 'お正月の曲です',
-      embed_code: '<iframe src="https://www.youtube.com/embed/M0qM5zrWock?"
+      embed_code: '<iframe src="https://www.youtube.com/embed/M0qM5zrWock"
       title="春の海（三橋貴風・沢井忠夫）／Haru no Umi（Spring Sea）"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube">
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
       </iframe>'
     },
     {
@@ -33,7 +34,7 @@ class YoutubeVideo < ActiveHash::Base
       embed_code: '<iframe src="https://www.youtube.com/embed/TgMC-AKTXLQ?"
       title="おことで「さくらさくら」を弾いてみよう！"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
-      web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube">
+      web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
       </iframe>'
     },
     {
