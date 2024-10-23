@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_21_150503) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_22_141723) do
   create_table "diagnoses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -22,16 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_150503) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "video_id"
+    t.integer "result_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
-  create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "youtube_video_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_likes_on_user_id"
-    t.index ["youtube_video_id"], name: "index_likes_on_youtube_video_id"
   end
 
   create_table "okotos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -61,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_150503) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "youtube_video_id"
-    t.string "video_id"
+    t.integer "video_id"
     t.string "result_id"
   end
 
@@ -74,13 +66,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_150503) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "result_id", null: false
-    t.string "video_id"
+    t.integer "video_id"
     t.index ["result_id"], name: "index_youtube_videos_on_result_id"
   end
 
   add_foreign_key "favorites", "users"
-  add_foreign_key "likes", "users"
-  add_foreign_key "likes", "youtube_videos"
   add_foreign_key "results", "diagnoses"
   add_foreign_key "youtube_videos", "results"
 end
