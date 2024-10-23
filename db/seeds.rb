@@ -16,7 +16,7 @@ results = Result.all # 全ての結果を取得
 # YoutubeVideoデータを元にVideoレコードをデータベースに作成
 # YoutubeVideoがActiveHashを使用しているためseedを使用して取得
 YoutubeVideo.all.each do |youtube_video|
-  result = results.find_by(id: youtube_video.result_id)
+  result = Result.find_by(id: youtube_video.result_id)
   next unless result
 
   Video.create!(
@@ -26,3 +26,14 @@ YoutubeVideo.all.each do |youtube_video|
     result_id: youtube_video.result_id
   )
 end
+
+  Video.create!(
+  id: 1, 
+  title: "六段の調", 
+  embed_code: '<iframe src=\"https://www.youtube.com/embed/WiMo8F6rKA8\"\n      title=\"頭上からの視点で『六段の調』iPh
+              oneXSでの撮影\"\n      allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web
+              -share\"\n      referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen class=\"youtube mx-auto\">\n      </ifram
+              e>', 
+  youtube_video_id: 1, 
+  result_id: 1
+)
