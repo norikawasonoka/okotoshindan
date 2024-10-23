@@ -16,6 +16,14 @@ class ResultsController < ApplicationController
     @diagnosis = @result.diagnosis
     @youtube_embed_codes = fetch_youtube_embed_codes(@result.id)
     @youtube_videos = YoutubeVideo.where(result_id: @result.id)
+  
+    # 現在のユーザーがログインしている場合のお気に入りを取得
+    if current_user.present?
+      @favorite = current_user.favorites.find_by(result_id: @result.id)
+    else
+      @favorite = nil # ログインしていない場合はnilを設定
+    end
+
     if params[:video_id].present?
       @video = Video.find(params[:video_id]) # Videoモデルから取得
       @youtube_video = @video.youtube_video # 関連付けられたYoutubeVideoを取得

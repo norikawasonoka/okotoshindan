@@ -6,4 +6,5 @@ class Result < ApplicationRecord
 
   belongs_to :diagnosis
   has_many :videos
+  has_many :favorites
 end
