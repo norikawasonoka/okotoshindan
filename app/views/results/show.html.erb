@@ -29,11 +29,9 @@
             <!-- お気に入り登録 -->
             <div>
               <% if current_user.present? %>
-                <% if current_user.already_favorited?(video) %>
-                  <%= button_to "良い", result_video_favorite_path(result_id: @result.id, video_id: video.id), method: :delete, class: "btn bg-good" %>
-                <% else %>
-                  <%= button_to "好みではない", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, class: "btn bg-ungood" %>
-                <% end %>
+                <div id="favorite-button-container-<%= video.id %>">
+                <%= render partial: "favorites/favorite_button", locals: { video: video, result: @result } %>
+                </div>
               <% end %>
             </div>
           </div>
