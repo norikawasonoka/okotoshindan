@@ -14,9 +14,11 @@
       <div class="p-4">
         <div class="container mx-auto text-center">
           <%= link_to '診断スタート', diagnoses_path, class: "btn bg-silver" %>
-          <h6 class="text-2xl p-4 font-bold">おことの情報</h6>
+          <h1 class="text-2xl p-4 font-bold">おことの情報</h1>
           <%= link_to "ことについて", okotos_path, class: "btn bg-silver " %>
           <%= link_to "おことの演奏技法", plays_okotos_path, class: "btn bg-silver" %>
+          <h2 class="text-2xl p-4 font-bold">ランキング</h2>
+          <%= link_to "ランキング", ranks_results_path, class: "btn bg-silver" %>
         </div>
         <div class="w-full flex justify-center p-4">
           <div id="line-button-container" class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL" data-lineId="@501hrlmq" style="display: block;"></div>

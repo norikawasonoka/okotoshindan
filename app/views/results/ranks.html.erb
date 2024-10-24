@@ -1,0 +1,41 @@
+<div style="background-image: url('<%= asset_path('ranku2.jpg') %>'); height: 100vh; width: 100%; background-repeat: repeat;">
+  <div class="container mx-auto flex flex-col items-center justify-center text-center p-4 font-bold text-lg">
+      <table class="table-auto">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>タイトル</th>
+          <th>良き数</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% last_count = nil %>  <!-- 前回の favorites.count を記録 -->
+        <% rank_number = 0 %>   <!-- 表示する順位 -->
+        <% display_rank = 0 %>  <!-- 実際に表示される順位（同順位対応） -->
+
+        <% @ranked_videos.each.with_index(1) do |rank, i| %>
+          <% if last_count != rank.favorites.count %>
+            <% rank_number = i %> <!-- 順位を更新 -->
+            <% display_rank = rank_number %>
+          <% end %>
+          
+          <tr>
+            <td><%= "第#{display_rank}位" %></td>
+            <td><%= rank.title %></td>
+            <td><%= rank.favorites.count %></td>
+          </tr>
+
+          <% last_count = rank.favorites.count %> <!-- 前回のカウントを更新 -->
+        <% end %>
+      </tbody>
+    </table>
+      <div class="mt-4">
+        <% if logged_in? %>  <!-- ユーザーがログインしているか確認 -->
+          <%= link_to 'トップページに戻る', after_login_path, class: "btn bg-silver" %>
+        <% else %>
+          <%= link_to 'トップページに戻る', root_path, class: "btn bg-silver" %>
+        <% end %>
+      </div>
+  </div>
+</div>
