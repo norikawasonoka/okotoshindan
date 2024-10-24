@@ -33,6 +33,11 @@ class ResultsController < ApplicationController
     end
   end
 
+  def rank
+    # お気に入りの多い順にVideoを取得
+    @videos_by_favorite_count = Video.joins(:favorites).where(result_id: @result.id).group(:id).order('COUNT(favorites.id) DESC').select('videos.*, COUNT(favorites.id) as favorites_count')
+  end
+
   def create
     @diagnosis = Diagnosis.find(params[:diagnosis_id])
     @result = @diagnosis.build_result(result_params)

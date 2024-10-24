@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
   resources :diagnoses
-  resources :results, only: %i[index new create show] do
+  resources :results, only: %i[index new create show rank] do
     resources :videos do
       resources :favorites, only: [:create, :destroy]
     end

@@ -26,14 +26,3 @@ YoutubeVideo.all.each do |youtube_video|
     result_id: youtube_video.result_id
   )
 end
-
-  Video.create!(
-  id: 1, 
-  title: "六段の調", 
-  embed_code: '<iframe src=\"https://www.youtube.com/embed/WiMo8F6rKA8\"\n      title=\"頭上からの視点で『六段の調』iPh
-              oneXSでの撮影\"\n      allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web
-              -share\"\n      referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen class=\"youtube mx-auto\">\n      </ifram
-              e>', 
-  youtube_video_id: 1, 
-  result_id: 1
-)
