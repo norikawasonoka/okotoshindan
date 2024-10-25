@@ -15,14 +15,27 @@ results = Result.all # 全ての結果を取得
 
 # YoutubeVideoデータを元にVideoレコードをデータベースに作成
 # YoutubeVideoがActiveHashを使用しているためseedを使用して取得
+
+# 全ての YoutubeVideo データを取得して Video レコードを更新または作成
 YoutubeVideo.all.each do |youtube_video|
+
+  #Resultの存在確認
+  
   result = Result.find_by(id: youtube_video.result_id)
   next unless result
-
-  Video.create!(
-    title: youtube_video.title,
-    embed_code: youtube_video.embed_code,
-    youtube_video_id: youtube_video.id,
-    result_id: youtube_video.result_id
+  
+  #Videoレコードを取得または初期化（新規の場合は作成）
+  
+  video = Video.find_or_initialize_by(youtube_video_id: youtube_video.id)
+  
+  #Videoレコードを更新
+  
+  video.update!(
+  title: youtube_video.title,
+  embed_code: youtube_video.embed_code,
+  youtube_video_id: youtube_video.id,
+  result_id: youtube_video.result_id
   )
 end
+
+puts "YouTube video data has been updated or created successfully."
