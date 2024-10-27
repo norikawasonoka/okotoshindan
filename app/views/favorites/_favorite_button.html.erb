@@ -1,5 +1,5 @@
 <% if @favorite.present? && current_user.already_favorited?(video) %>
-  <%= button_to "良い", result_video_favorite_path(result_id: @result.id, video_id: video.id, id: @favorite.id), method: :delete, remote: true, data: { turbo_method: :delete}, id: "favorite-button-container-#{video.id}", class: "btn bg-good" %>
+  <%= button_to "良き", result_video_favorite_path(result_id: @result.id, video_id: video.id, id: @favorite.id), method: :delete, remote: true, data: { turbo_method: :delete}, id: "favorite-button-container-#{video.id}", class: "btn bg-good" %>
 <% else %>
-  <%= button_to "好みではない", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, remote: true, data: { turbo_method: :post}, id: "favorite-button-container-#{video.id}", class: "btn bg-ungood" %>
+  <%= button_to "良き", result_video_favorites_path(result_id: @result.id, video_id: video.id), method: :post, remote: true, data: { turbo_method: :post}, id: "favorite-button-container-#{video.id}", class: "btn bg-ungood" %>
 <% end %>
