@@ -5,37 +5,39 @@
       <p class="text-xl p-4"><%= @result.title %></p>
       
       <% if @youtube_embed_codes.present? %>
-        <% @youtube_embed_codes.each do |video| %>
-          <div class="youtube-container mb-4 flex flex-col items-center">
-            <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
-            <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
-            <div class="w-full max-w-lg">
-              <%= raw video[:embed_code] %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <!-- モバイルでは1列、画面が広がると2列 -->
+          <% @youtube_embed_codes.each do |video| %>
+            <div class="youtube-container mb-4 flex flex-col items-center">
+              <h3 class="text-lg font-semibold mb-2"><%= video[:title] %></h3>
+              <p class="text-sm text-gray-600 mb-4"><%= video[:description] %></p>
+              <div class="w-full max-w-lg">
+                <%= raw video[:embed_code] %>
+              </div>
+              <div class="p-4">
+                <% if video.embed_code %>
+                  <% youtube_url = video.embed_code.match(/src="([^"]+)"/)[1] %>
+                <% end %>
+                <% if youtube_url %>
+                  <div class="btn bg-secondary-content text-xl">
+                    <%= link_to "https://twitter.com/share?url=#{CGI.escape(youtube_url)}&text=#{CGI.escape("【お箏診断】#{video.title} おすすめの曲です♪ぜひきいてみてください！！https://www.okotoshindan.com/")}", target: '_blank', title: "Xでシェア" do %>
+                      曲をXでシェアする
+                    <% end %>
+                  </div>
+                <% else %>
+                  <p>動画が見つかりませんでした。</p>
+                <% end %>
+              </div>
+              <!-- お気に入り登録 -->
+              <div>
+                <% if current_user.present? %>
+                  <div id="favorite-button-container-<%= video.id %>">
+                  <%= render partial: "favorites/favorite_button", locals: { video: video, result: @result } %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-            <div class="p-4">
-              <% if video.embed_code %>
-                <% youtube_url = video.embed_code.match(/src="([^"]+)"/)[1] %>
-              <% end %>
-              <% if youtube_url %>
-                <div class="btn bg-secondary-content text-xl">
-                  <%= link_to "https://twitter.com/share?url=#{CGI.escape(youtube_url)}&text=#{CGI.escape("【お箏診断】#{video.title} おすすめの曲です♪ぜひきいてみてください！！https://www.okotoshindan.com/")}", target: '_blank', title: "Xでシェア" do %>
-                    曲をXでシェアする
-                  <% end %>
-                </div>
-              <% else %>
-                <p>動画が見つかりませんでした。</p>
-              <% end %>
-            </div>
-            <!-- お気に入り登録 -->
-            <div>
-              <% if current_user.present? %>
-                <div id="favorite-button-container-<%= video.id %>">
-                <%= render partial: "favorites/favorite_button", locals: { video: video, result: @result } %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
       
       <div class="mt-4">
