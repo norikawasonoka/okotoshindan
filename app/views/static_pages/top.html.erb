@@ -19,8 +19,15 @@
             <%= link_to "ことについて", okotos_path, class: "btn bg-silver" %>
             <%= link_to "おことの演奏技法", plays_okotos_path, class: "btn bg-silver" %>
             <h2 class="text-2xl p-4 font-bold">ランキング</h2>
-            <%= link_to "ランキング", ranks_results_path, class: "btn bg-silver" %>
-            <div class="w-full flex justify-center">
+            <%= link_to "ランキング", ranks_results_path, class: "btn bg-silver mb-4" %>
+            <div class="w-full flex justify-center p-4">
+            <div class="btn bg-secondary-content ">
+            <%= link_to "https://twitter.com/share?url=https://www.okotoshindan.com/&text=【お箏診断】診断をしてあなたの聞きたいお箏の曲を聞けます♪お箏の曲は眠たくない曲もたくさんありますよ！！", 
+              target: '_blank', title: "Xでシェア" do %>
+              Xでシェアする
+            <% end %>
+            </div>
+            <%= link_to "LINEでログイン", line_login_api_login_path, class: "btn bg-line mb-4" %>
           </div>
         </div>
       </div>
