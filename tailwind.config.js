@@ -20,7 +20,14 @@ module.exports = {
         'good': '#ec4899',
         'ungood': '#f8fafc',
       },
+      backgroundImage: {
+        'desktop1': "url('/assets/akasakura-1.jpg')",
+        'mobile1': "url('/assets/mbakasakura1.jpg')",
+        'desktop2': "url('/assets/ume-1.jpg')",
+        'mobile2': "url('/assets/mbsakura1.jpg')",
+      },
     },
+   
 
   // daisyUI config (optional - here are the default values)
   daisyui: {
