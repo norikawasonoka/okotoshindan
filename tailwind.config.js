@@ -21,10 +21,10 @@ module.exports = {
         'ungood': '#f8fafc',
       },
       backgroundImage: {
-        'desktop1': "url('/assets/akasakura-1.jpg')",
-        'mobile1': "url('/assets/mbakasakura1.jpg')",
-        'desktop2': "url('/assets/ume-1.jpg')",
-        'mobile2': "url('/assets/mbsakura1.jpg')",
+        'desktop1': "url('/assets/akasakura.png')",
+        'mobile1': "url('/assets/mbakasakura.png')",
+        'desktop2': "url('/assets/ume.png')",
+        'mobile2': "url('/assets/mbsakura.png')",
       },
     },
    
