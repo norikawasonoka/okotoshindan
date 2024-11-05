@@ -63,9 +63,7 @@ class LineWebhooksController < ApplicationController
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
     if response.code == 200
-      Rails.logger.info "Message sent successfully to user: #{user_id}"
     else
-      Rails.logger.error "Failed to send message: #{response.code} - #{response.body}"
     end
   end
 
@@ -91,18 +89,12 @@ class LineWebhooksController < ApplicationController
       },
       body: message_data.to_json
     }
-
-    Rails.logger.info("Sending notification with data: #{message_data}")
-    Rails.logger.info("API request options: #{options}")
     
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
-    Rails.logger.info("API response: #{response.code} - #{response.body}")
     
     if response.code == 200
-      Rails.logger.info("通知が正常に送信されました: #{message}")
     else
-      Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
     end
   end
 
@@ -113,9 +105,7 @@ class LineWebhooksController < ApplicationController
 
     # 各ユーザーに通知を送信
     users.each do |user|
-      Rails.logger.info("Sending notification to user: #{user.line_user_id}")
       send_line_notification({ 'userId' => user.line_user_id }, '新曲が追加されました！ぜひチェックしてみてください。')
     end
-    Rails.logger.info 'Notification sent to all users about new song.'
   end
 end

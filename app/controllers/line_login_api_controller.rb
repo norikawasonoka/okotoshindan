@@ -166,7 +166,6 @@ class LineLoginApiController < ApplicationController
     if response.success?
       JSON.parse(response.body) # レスポンスのJSONを解析して返す
     else
-      Rails.logger.error("LINE Profile fetch failed: #{response.code} - #{response.body}")
       nil
     end
   end
@@ -193,7 +192,6 @@ class LineLoginApiController < ApplicationController
     if response.code == 200
       JSON.parse(response.body) # アクセストークンのレスポンスを返す
     else
-      Rails.logger.error("Failed to get access token: #{response.code} - #{response.body}")
       nil
     end
   end
@@ -221,18 +219,12 @@ class LineLoginApiController < ApplicationController
       },
       body: message_data.to_json
     }
-
-    Rails.logger.info("Sending notification with data: #{message_data}")
-    Rails.logger.info("API request options: #{options}")
     
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
-    Rails.logger.info("API response: #{response.code} - #{response.body}")
     
     if response.code == 200
-      Rails.logger.info("通知が正常に送信されました: #{message}")
     else
-      Rails.logger.error("通知送信エラー: #{response.code} - #{response.body}")
     end
   end
 
@@ -243,9 +235,7 @@ class LineLoginApiController < ApplicationController
 
     # 各ユーザーに通知を送信
     users.each do |user|
-      Rails.logger.info("Sending notification to user: #{user.line_user_id}")
       send_line_notification
     end
-    Rails.logger.info 'Notification sent to all users about new song.'
   end
 end
