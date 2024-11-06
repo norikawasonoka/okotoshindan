@@ -3,4 +3,7 @@ class Video < ApplicationRecord
   belongs_to :result
   has_many :users, through: :favorites
   has_many :favorites, dependent: :destroy
+ 
+  validates :title, presence: true 
+  validates :embed_code, presence:
 end
