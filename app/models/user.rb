@@ -5,9 +5,10 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :videos, dependent: :destroy
+  has_many :favorited_videos, through: :favorites, source: :video
 
   def favorited_videos
-    videos # favoritesを通じて関連するVideoを取得
+    self.favorites.includes(:video).map(&:video) # favoritesを通じて関連するVideoを取得
   end
 
   def already_favorited?(video)

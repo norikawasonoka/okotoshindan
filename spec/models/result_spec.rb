@@ -22,5 +22,13 @@ RSpec.describe Result, type: :model do
       association = Result.reflect_on_association(:diagnosis)
       expect(association.macro).to eq :belongs_to
     end
+
+    it 'has many videos' do
+      expect(Result.reflect_on_association(:videos).macro).to eq(:has_many)
+    end
+
+    it 'has many favorites' do
+      expect(Result.reflect_on_association(:favorites).macro).to eq(:has_many)
+    end
   end
 end
