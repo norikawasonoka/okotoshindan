@@ -7,8 +7,7 @@ RSpec.describe Favorite, type: :model do
     let(:user) { create(:user) }
     let(:video) { create(:video) }
     let(:result) { create(:result) }  # resultを追加
-    let(:favorite) { create(:favorite, user: user, video: video, youtube_video_id: "test_youtube_id") }
-
+    let(:favorite) { create(:favorite, user: user, video: video, result: result) }
 
     it 'is valid with a user, a video, and a result' do
       favorite = Favorite.new(user: user, video: video, result: result)  # resultを設定
