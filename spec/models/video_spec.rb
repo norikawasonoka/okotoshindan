@@ -6,6 +6,7 @@ RSpec.describe Video, type: :model do
   describe 'validations' do
     let(:diagnosis) { Diagnosis.create!(title: "Sample Diagnosis") }
     let(:result) { Result.create!(title: "Sample Title", diagnosis_id: diagnosis.id) } 
+    let(:youtube_video) { YoutubeVideo.create!(title: "Sample YouTube Video") }
     let(:video) { Video.new(title: "Sample Video", embed_code: "<iframe></iframe>", result: result) }
     
     it 'is valid with a title and embed_code' do
