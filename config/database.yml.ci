@@ -1,7 +1,8 @@
 test:
   adapter: mysql2
-  encoding: utf8
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
+  password: # 空
   host: 127.0.0.1
-  database:  my_app_test
+  database: myapp_test
