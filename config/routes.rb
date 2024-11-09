@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
   get 'terms', to: 'static_pages#terms'
-  get '/before_login', to: 'static_pages#before_login'
+  get 'use', to: 'static_pages#use'
   get '/after_login', to: 'static_pages#after_login', as: 'after_login'
   # LINEログイン関連のルーティング
   get 'line_login_api/login', to: 'line_login_api#login'
