@@ -13,7 +13,8 @@
         <span class="material-symbols-outlined">menu</span>
       </div>
       <ul tabindex="0" class="dropdown-content menu text-slate-950 rounded-box z-[2] w-52 p-2 shadow">
-        
+        <%= link_to 'アプリの使い方', use_path, class: "btn bg-silver" %>
+        <%= link_to "LINEでログイン", line_login_api_login_path, class: "btn bg-line mb-4" %>
       </ul>
     </div>      
   </div>
