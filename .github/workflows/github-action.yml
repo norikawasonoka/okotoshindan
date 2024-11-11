@@ -46,7 +46,6 @@ jobs:
       - name: Set up database config for CI
         run: cp config/database.yml.ci config/database.yml
 
-
       - name: Prepare database
         env:
           RAILS_ENV: test
