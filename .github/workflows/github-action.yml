@@ -12,7 +12,7 @@ jobs:
       mysql:
         image: mysql:8.0
         ports:
-          - 3306:3306
+          - 3307:3306
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -47,7 +47,7 @@ jobs:
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec rails db:seed RAILS_ENV=test
 
       - name: Run rspec
         run: bundle exec rspec
-        
