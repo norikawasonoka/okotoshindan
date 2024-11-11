@@ -43,6 +43,9 @@ jobs:
           sudo apt-get install -y nodejs yarn
           gem install bundler
           bundle install
+      - name: Set up database config for CI
+        run: cp config/database.yml.ci config/database.yml
+
 
       - name: Prepare database
         env:
