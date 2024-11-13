@@ -21,9 +21,9 @@ SNS、アプリをxでシェアできるようにする、マターモストで�
 ■ 機能候補
 MVP　　診断機能　お箏の道具演奏技術をまとめたもの（診断する一番最初のページにいれる）　音楽はユチューブから診断にあった曲を入れ込む 
 本リリース　診断の内容　診断結果の曲をユチューブから入れ込む　お箏の道具演奏技術をまとめたページを完成させる
-LINEのログイン機能　LINEで新曲追加が通知が行くようにする機能　お問い合わせフォーム　プライバシーポリシー、利用機能　xで曲の共有機能
+LINEのログイン機能　LINEで新曲追加が通知が行くようにする機能 お気に入りボタン機能　ランキング機能　お問い合わせフォーム　プライバシーポリシー、利用機能　xで曲の共有機能
 
 ■ 機能の実装方針予定
-バックエンド　Ruby on Rails　データベース　MYSQL フロントエンド JavaScript,tailwind css, Css, daisyUI　インフラ　heroku　LINE Messaging API　環境開発　Docker
+バックエンド　Ruby on Rails　データベース　MYSQL2 フロントエンド JavaScript,tailwind css, Css, daisyUI　インフラ　heroku　LINE Messaging API　環境開発　Docker
 
 ![alt text](<スクリーンショット 2024-08-29 105751.png>)
