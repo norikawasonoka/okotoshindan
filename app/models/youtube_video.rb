@@ -33,8 +33,8 @@ class YoutubeVideo < ActiveHash::Base
       description: '誰もが知っている曲、春になるとスーパーでよく聞きますね',
       embed_code: '<iframe src="https://www.youtube.com/embed/TgMC-AKTXLQ?"
       title="おことで「さくらさくら」を弾いてみよう！"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
-      web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
       </iframe>'
     },
     {
