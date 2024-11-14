@@ -1,7 +1,7 @@
 # -■　お箏診断
 サービスURL　https://www.okotoshindan.com/
  
- ![代替テキスト](c:\Users\ryo_1\OneDrive\画像\ogp.png)
+ [![Image from Gyazo](https://i.gyazo.com/1358157c46c85828a2fd42f8406cae12.jpg)](https://gyazo.com/1358157c46c85828a2fd42f8406cae12)
 
 お箏の音楽を気軽に聞くアプリ。きれい、激しいなど選択肢を数個出して診断方式でその人が聞きたい音楽を選びます。また、お箏で使う道具や演奏技術をまとめたものを一覧にまとめます。
 
@@ -42,5 +42,4 @@ LINEのログイン機能　LINEで新曲追加が通知が行くようにする
 ## ■ 機能の実装方針予定
 バックエンド　Ruby on Rails　データベース　MYSQL2 フロントエンド JavaScript,tailwind css, Css, daisyUI　インフラ　heroku　LINE Messaging API　環境開発　Docker
 
-![alt text](https://drive.google.com/file/d/1W7mK9uD8TLPASyPGg089ZS1QbSfNvEiT/view?usp=sharing)
-https://drive.google.com/file/d/1W7mK9uD8TLPASyPGg089ZS1QbSfNvEiT/view?usp=sharing
+[![Image from Gyazo](https://i.gyazo.com/5b5ae6e3f091fb21e3e45c8b6543db7e.png)](https://gyazo.com/5b5ae6e3f091fb21e3e45c8b6543db7e)
