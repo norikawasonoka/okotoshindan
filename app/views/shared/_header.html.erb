@@ -10,9 +10,9 @@
       <div tabindex="0" role="button" class="flex items-center py-2 px-4 text-sm btn m-1 mr-4">
         <span class="material-symbols-outlined">menu</span>
       </div>
-      <ul tabindex="0" class="dropdown-content menu text-slate-950 rounded-box z-[2] w-52 p-2 shadow">
-        <li class="bg-pinku"><a>ID: <%= current_user.id %></a></li>
-        <li class="bg-pinku"><a>LINEユーザー名: <%= current_user.name %></a></li>
+      <ul tabindex="0" class="dropdown-content menu z-[2] w-52 p-2 shadow">
+        <li class="bg-pinku rounded"><a>ID: <%= current_user.id %></a></li>
+        <li class="bg-pinku rounded"><a>LINEユーザー名: <%= current_user.name %></a></li>
         <%= link_to 'アプリの使い方', use_path, class: "btn bg-silver" %>
         <%= link_to 'ログアウト', line_login_api_destroy_path, data: { turbo_method: :delete }, class: "btn bg-line" %>
         <% current_user = User.find_by(id: session[:user_id]) %>

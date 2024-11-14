@@ -1,18 +1,16 @@
 <header>
-  <div class="bg-pinku flex flex-row justify-between items-center  text-white w-full h-16">
-  <div class="pl-4">
-  <%= link_to root_path do %>
-    <%= image_tag 'kotosin.png', class: 'w-32 h-15 md:w-48 md:h-22' %>
-  <% end %>
-</div>
-
-          
+  <div class="bg-pinku flex flex-row justify-between items-center w-full h-16">
+    <div class="pl-4">
+    <%= link_to root_path do %>
+      <%= image_tag 'kotosin.png', class: 'w-32 h-15 md:w-48 md:h-22' %>
+    <% end %>
+    </div>
             
     <div class="dropdown dropdown-end ">
       <div tabindex="0" role="button" class="flex items-center py-2 px-4 text-sm btn m-1 mr-4">
         <span class="material-symbols-outlined">menu</span>
       </div>
-      <ul tabindex="0" class="dropdown-content menu text-slate-950 rounded-box z-[2] w-52 p-2 shadow">
+      <ul tabindex="0" class="dropdown-content menu z-[2] w-52 p-2 shadow">
         <%= link_to 'アプリの使い方', use_path, class: "btn bg-silver" %>
         <%= link_to "LINEでログイン", line_login_api_login_path, class: "btn bg-line mb-4" %>
       </ul>

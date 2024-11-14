@@ -9,24 +9,24 @@
   <div style="background-image: url('<%= asset_path('orenjisakura.png') %>'); background-repeat: repeat;">
     <div class="container mx-auto text-center">
       <div class="p-4">
-        <h1 class="text-2xl p-4">楽器の説明</h1>
-        <p class="text-lg">１３弦</p>
+        <h1 class="text-4xl p-4">楽器の説明</h1>
+        <p class="text-2xl">１３弦</p>
           <img src="/assets/13gen.png" class="mx-auto w-[300px] sm:w-[500px]" /><!-- smは画面幅が640px以上の時に適用されるクラス -->
           <img src="/assets/gen.png" class="mx-auto w-[300px] sm:w-[500px]" />
-        <p class="text-lg">１７弦</p>
+        <p class="text-2xl">１７弦</p>
         <img src="/assets/17gen.png" class="mx-auto w-[300px] sm:w-[500px]" />
-        <p class="text-lg">１７弦の音色♪</p>
+        <p class="text-2xl">１７弦の音色♪</p>
           <iframe src="https://www.youtube.com/embed/uCtUtQ3Nfhg"  
             title="Speed Challenge!! 〜十七絃ver.〜" frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="mx-auto w-[300px] sm:w-[500px]">
             </iframe>
-        <h2 class="text-2xl p-4">おことで使う道具</h2>
-        <p class="text-lg">つめ</p>
+        <h2 class="text-4xl p-4">おことで使う道具</h2>
+        <p class="text-2xl">つめ</p>
         <img src="/assets/tume.png" class="mx-auto w-[300px] sm:w-[500px]" />
-        <p class="text-lg">琴台（きんだい）・譜面台</p>
+        <p class="text-2xl">琴台（きんだい）・譜面台</p>
         <img src="/assets/kindai.png" class="mx-auto w-[300px] sm:w-[500px]" />
-        <h3 class="text-2xl p-4">楽譜</h3>
+        <h3 class="text-4xl p-4">楽譜</h3>
           <iframe
             src="https://www.youtube.com/embed/TgMC-AKTXLQ?" 
             title="おことで「さくらさくら」を弾いてみよう！ let&#39;s play KOTO! SAKURASAKURA movie" 
@@ -35,7 +35,6 @@
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen class="mx-auto w-[300px] sm:w-[500px]">
           </iframe>
-      </div>
         <div class="mt-4">
         <% if logged_in? %>  <!-- ユーザーがログインしているか確認 -->
           <%= link_to 'トップページに戻る', after_login_path, class: "btn bg-silver" %>
@@ -43,6 +42,7 @@
           <%= link_to 'トップページに戻る', root_path, class: "btn bg-silver" %>
         <% end %>
         </div>
+      </div>
     </div>
   </div>
 </body> 
