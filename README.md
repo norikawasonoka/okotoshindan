@@ -28,7 +28,7 @@
 | 通知機能 | 良きボタンでランキングに反映 |
 |:-----------:|:------------:|
 | [![Image from Gyazo](https://i.gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be.png)](https://gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be) |[![Image from Gyazo](https://i.gyazo.com/28add6c5b5006e62fd8c53b7c8b9ddc7.gif)](https://gyazo.com/28add6c5b5006e62fd8c53b7c8b9ddc7) |
-| ラインの友達登録をして「新曲追加」当の通知を受け取れます。 | 良きボタンをおしてランキングに反映されます。 |
+| ラインの友達登録をして「新曲追加」等の通知を受け取れます。 | 良きボタンをおしてランキングに反映されます。 |
 
 
 ## ■ ユーザーの獲得について
@@ -48,6 +48,11 @@
 * お気に入りボタン機能　
 * ランキング機能　
 * お問い合わせフォーム　プライバシーポリシー、利用機能
+* テスト
+ * rubocop
+ * rspec
+* GitHubActionを用いたCI
+* レスポンシブ対応
 
 ## ■ 使用技術
 
