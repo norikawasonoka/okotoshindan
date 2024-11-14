@@ -43,5 +43,15 @@ LINEのログイン機能　LINEで新曲追加が通知が行くようにする
 
 ## ■ 機能の実装方針予定
 バックエンド　Ruby on Rails　データベース　MYSQL2 フロントエンド JavaScript,tailwind css, Css, daisyUI　インフラ　heroku　LINE Messaging API　環境開発　Docker
+| カテゴリ | 技術 | 
+|:-----------|------------:|
+| フロントエンド| JavaScript,tailwind css, Css, daisyUI|
+| バックエンド     | ruby-3.2.3、Rails 7.0.8.4| 
+| db     | MYSQL2|
+| インフラ         | heroku|
+| 環境構築      | Docker       | 
+| API   | LINE Messaging API     | 
+| CI    | GitHub Actions |
+
 
 [![Image from Gyazo](https://i.gyazo.com/5b5ae6e3f091fb21e3e45c8b6543db7e.png)](https://gyazo.com/5b5ae6e3f091fb21e3e45c8b6543db7e)
