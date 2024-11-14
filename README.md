@@ -1,8 +1,7 @@
 # -■　お箏診断
 サービスURL　https://www.okotoshindan.com/
- ![Qiita]((https://1drv.ms/i/c/dbe0915e889a8707/EZBJg1gEGYlItefVGcUnBM4B4ZpNTa15ItJZzB9Tw-zuzA?e=q93tkI) "Qiita")
-
- [<img src="<%= asset_path('ogp.png') %>" />](https://1drv.ms/i/c/dbe0915e889a8707/EZBJg1gEGYlItefVGcUnBM4B4ZpNTa15ItJZzB9Tw-zuzA?e=q93tkI)
+ 
+ ![代替テキスト](c:\Users\ryo_1\OneDrive\画像\ogp.png)
 
 お箏の音楽を気軽に聞くアプリ。きれい、激しいなど選択肢を数個出して診断方式でその人が聞きたい音楽を選びます。また、お箏で使う道具や演奏技術をまとめたものを一覧にまとめます。
 
@@ -43,4 +42,5 @@ LINEのログイン機能　LINEで新曲追加が通知が行くようにする
 ## ■ 機能の実装方針予定
 バックエンド　Ruby on Rails　データベース　MYSQL2 フロントエンド JavaScript,tailwind css, Css, daisyUI　インフラ　heroku　LINE Messaging API　環境開発　Docker
 
-![alt text](<スクリーンショット 2024-08-29 105751.png>)
+![alt text](https://drive.google.com/file/d/1W7mK9uD8TLPASyPGg089ZS1QbSfNvEiT/view?usp=sharing)
+https://drive.google.com/file/d/1W7mK9uD8TLPASyPGg089ZS1QbSfNvEiT/view?usp=sharing
