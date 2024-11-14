@@ -1,8 +1,8 @@
 # -■　お箏診断
 サービスURL　https://www.okotoshindan.com/
- ![Qiita](<img src="<%= asset_path('ogp.png') %>" /> "Qiita")
+ ![Qiita]((https://1drv.ms/i/c/dbe0915e889a8707/EZBJg1gEGYlItefVGcUnBM4B4ZpNTa15ItJZzB9Tw-zuzA?e=q93tkI) "Qiita")
 
- [<img src="<%= asset_path('ogp.png') %>" />](url)
+ [<img src="<%= asset_path('ogp.png') %>" />](https://1drv.ms/i/c/dbe0915e889a8707/EZBJg1gEGYlItefVGcUnBM4B4ZpNTa15ItJZzB9Tw-zuzA?e=q93tkI)
 
 お箏の音楽を気軽に聞くアプリ。きれい、激しいなど選択肢を数個出して診断方式でその人が聞きたい音楽を選びます。また、お箏で使う道具や演奏技術をまとめたものを一覧にまとめます。
 
@@ -24,7 +24,7 @@
 
 | ログイン後の機能 | アプリ機能4 |
 |:-----------:|:------------:|
-| [![Image from Gyazo](https://i.gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be.png)](https://gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be) |[![Image from Gyazo](https://i.gyazo.com/27d1e2fb62cb7c1c806ac17648783153.gif)](https://gyazo.com/27d1e2fb62cb7c1c806ac17648783153) |
+| [![Image from Gyazo](https://i.gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be.png)](https://gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be) |[![Image from Gyazo](https://i.gyazo.com/28add6c5b5006e62fd8c53b7c8b9ddc7.gif)](https://gyazo.com/28add6c5b5006e62fd8c53b7c8b9ddc7) |
 | ラインの友達登録をして「新曲追加」当の通知を受け取れます。 | 良きボタンをおしてランキングに反映されます。 |
 
 
