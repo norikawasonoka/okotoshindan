@@ -13,17 +13,17 @@
 
 # ■サービスの利用イメージ
 お箏の音楽を気軽に楽しめる。普段聞くことがない音楽を聴く機会になる。お箏のことを知るきっかけになる
-| 診断機能 | アプリ機能1 |
+| 診断機能 | ラインのログイン機能 |
 |:-----------:|:------------:|
-|[![Image from Gyazo](https://i.gyazo.com/c752abcc59415599afb056066ecdbac9.gif)](https://gyazo.com/c752abcc59415599afb056066ecdbac9) | GyazoのマークダウンGIF |
-| アプリ機能の説明が入ります。アプリ機能の説明が入ります。 | アプリ機能の説明が入ります。アプリ機能の説明が入ります。 |
+|[![Image from Gyazo](https://i.gyazo.com/c752abcc59415599afb056066ecdbac9.gif)](https://gyazo.com/c752abcc59415599afb056066ecdbac9) | [![Image from Gyazo](https://i.gyazo.com/b1d76cd4b0f3230d1ed95da9ad40820f.png)](https://gyazo.com/b1d76cd4b0f3230d1ed95da9ad40820f) |
+| 診断スタートを押して聞きたいジャンルを選びます。 | Lineでログインができます。 |
 
 </br>
 
 | ログイン後の機能 | アプリ機能4 |
 |:-----------:|:------------:|
 | [![Image from Gyazo](https://i.gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be.png)](https://gyazo.com/7d3ab2de40f4484c2f69f496bd9c01be) |[![Image from Gyazo](https://i.gyazo.com/27d1e2fb62cb7c1c806ac17648783153.gif)](https://gyazo.com/27d1e2fb62cb7c1c806ac17648783153) |
-| アプリ機能の説明が入ります。アプリ機能の説明が入ります。 | アプリ機能の説明が入ります。アプリ機能の説明が入ります。 |
+| ラインの友達登録をして「新曲追加」当の通知を受け取れます。 | 良きボタンをおしてランキングに反映されます。 |
 
 
 # ■ ユーザーの獲得について
