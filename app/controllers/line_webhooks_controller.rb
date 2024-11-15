@@ -20,7 +20,7 @@ class LineWebhooksController < ApplicationController
       user_id = event['source']['userId']
       message = event['message']['text']
       # LINE Botの管理者のIDからのメッセージかどうかを判定
-      if user_id == ENV['LINE_ADMIN_USER_ID']
+      if user_id == ENV.fetch('LINE_ADMIN_USER_ID', nil)
         # 管理者から「新曲追加」メッセージが送信された場合
         add_new_video_and_notify('新しいビデオタイトル') if message.include?('新曲追加')
       else
@@ -44,7 +44,7 @@ class LineWebhooksController < ApplicationController
 
   def send_line_message(user_id, message)
     url = 'https://api.line.me/v2/bot/message/push'
-    access_token = ENV['LINE_BOT_CHANNEL_ACCESS_TOKEN']
+    access_token = ENV.fetch['LINE_BOT_CHANNEL_ACCESS_TOKEN', nil]
     message_data = {
       to: user_id,
       messages: [
@@ -87,7 +87,7 @@ class LineWebhooksController < ApplicationController
 
     options = {
       headers: {
-        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
+        'Authorization' => "Bearer #{ENV.fetch['LINE_CHANNEL_ACCESS_TOKEN', nil]}", # 適切なアクセストークンを使用
         'Content-Type' => 'application/json'
       },
       body: message_data.to_json

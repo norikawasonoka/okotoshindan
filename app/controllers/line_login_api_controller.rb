@@ -18,14 +18,14 @@ class LineLoginApiController < ApplicationController
 
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
-    client_id = ENV['LINE_CLIENT_ID'] # 本番環境では環境変数などに保管する
+    client_id = ENV.fetch('LINE_CLIENT_ID', nil) # 本番環境では環境変数などに保管する
     redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
     scope = 'profile%20openid' # ユーザーに付与を依頼する権限
 
     authorization_url = "#{base_authorization_url}?response_type=#{response_type}" \
-                   "&client_id=#{client_id}&redirect_uri=#{redirect_uri}" \
-                   "&state=#{state}&scope=#{scope}"
+                        "&client_id=#{client_id}&redirect_uri=#{redirect_uri}" \
+                        "&state=#{state}&scope=#{scope}"
 
     redirect_to authorization_url, allow_other_host: true
   end
@@ -118,7 +118,7 @@ class LineLoginApiController < ApplicationController
     options = {
       body: {
         id_token: line_user_id_token, # 修正済み
-        client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
+        client_id: ENV.fetch('LINE_CLIENT_ID', nil), # 環境変数から取得
         scope: 'profile%20openid' # 修正済み
       }
     }
@@ -145,8 +145,8 @@ class LineLoginApiController < ApplicationController
         grant_type: 'authorization_code',
         code:,
         redirect_uri:,
-        client_id: ENV['LINE_CLIENT_ID'], # 環境変数から取得
-        client_secret: ENV['LINE_CLIENT_SECRET'], # 環境変数から取得
+        client_id: ENV.fetch('LINE_CLIENT_ID', nil), # 環境変数から取得
+        client_secret: ENV.fetch('LINE_CLIENT_SECRET', nil), # 環境変数から取得
         scope: 'profile%20openid'
       }
     }
@@ -179,8 +179,8 @@ class LineLoginApiController < ApplicationController
         grant_type: 'authorization_code',
         code:, # 認可コード
         redirect_uri:, # リダイレクトURI
-        client_id: ENV['LINE_CLIENT_ID'],
-        client_secret: ENV['LINE_CLIENT_SECRET']
+        client_id: ENV.fetch('LINE_CLIENT_ID', nil),
+        client_secret: ENV.fetch('LINE_CLIENT_SECRET', nil)
       }
     }
 
@@ -210,7 +210,7 @@ class LineLoginApiController < ApplicationController
 
     options = {
       headers: {
-        'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
+        'Authorization' => "Bearer #{ENV.fetch['LINE_CHANNEL_ACCESS_TOKEN', nil]}", # 適切なアクセストークンを使用
         'Content-Type' => 'application/json'
       },
       body: message_data.to_json
