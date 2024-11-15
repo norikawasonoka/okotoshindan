@@ -22,10 +22,9 @@ Rails.application.routes.draw do
       get 'ranks'
     end
     resources :videos do
-      resources :favorites, only: [:create, :destroy]
+      resources :favorites, only: %i[create destroy]
     end
   end
-  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

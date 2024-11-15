@@ -20,13 +20,13 @@ results = Result.all # 全ての結果を取得
 YoutubeVideo.all.each do |youtube_video|
   result = Result.find_by(id: youtube_video.result_id)
   next unless result
-  
+
   Video.create!(
-  title: youtube_video.title,
-  embed_code: youtube_video.embed_code,
-  youtube_video_id: youtube_video.id,
-  result_id: youtube_video.result_id
+    title: youtube_video.title,
+    embed_code: youtube_video.embed_code,
+    youtube_video_id: youtube_video.id,
+    result_id: youtube_video.result_id
   )
 end
 
-puts "YouTube video data has been updated or created successfully."
+puts 'YouTube video data has been updated or created successfully.'

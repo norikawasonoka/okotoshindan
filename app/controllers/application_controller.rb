@@ -3,6 +3,7 @@
 # ApplicationController
 # This controller handles authentication and ensures that users are logged in
 # before accessing certain actions.
+# ApplicationControllerは、全てのコントローラーの基底クラスです。
 
 class ApplicationController < ActionController::Base
   before_action :require_login # ログインが必要なアクションの前に require_login を呼び出す

@@ -4,22 +4,22 @@ require 'rails_helper'
 
 RSpec.describe Video, type: :model do
   describe 'validations' do
-    let(:diagnosis) { Diagnosis.create!(title: "Sample Diagnosis") }
-    let(:result) { Result.create!(title: "Sample Title", diagnosis_id: diagnosis.id) } 
-    let(:youtube_video) { YoutubeVideo.create!(title: "Sample YouTube Video") }
-    let(:video) { Video.new(title: "Sample Video", embed_code: "<iframe></iframe>", result: result) }
-    
+    let(:diagnosis) { Diagnosis.create!(title: 'Sample Diagnosis') }
+    let(:result) { Result.create!(title: 'Sample Title', diagnosis_id: diagnosis.id) }
+    let(:youtube_video) { YoutubeVideo.create!(title: 'Sample YouTube Video') }
+    let(:video) { Video.new(title: 'Sample Video', embed_code: '<iframe></iframe>', result:) }
+
     it 'is valid with a title and embed_code' do
       expect(video).to be_valid
     end
 
     it 'is invalid without an embed_code' do
-      video.embed_code = nil  # embed_codeをnilに設定
+      video.embed_code = nil # embed_codeをnilに設定
       expect(video).not_to be_valid
     end
 
     it 'is invalid without a title' do
-      video.title = nil  # titleをnilに設定
+      video.title = nil # titleをnilに設定
       expect(video).not_to be_valid
     end
   end

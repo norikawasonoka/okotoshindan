@@ -2,7 +2,6 @@
 
 # This class represents a YouTube video in the application.
 class YoutubeVideo < ActiveHash::Base
-
   self.data = [
     {
       id: 1,

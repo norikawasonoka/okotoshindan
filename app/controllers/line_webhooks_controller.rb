@@ -16,6 +16,7 @@ class LineWebhooksController < ApplicationController
     events.each do |event|
       # メッセージイベントを受信したとき
       next unless event['type'] == 'message'
+
       user_id = event['source']['userId']
       message = event['message']['text']
       # LINE Botの管理者のIDからのメッセージかどうかを判定
@@ -33,7 +34,7 @@ class LineWebhooksController < ApplicationController
   def add_new_video_and_notify(title)
     # 新しいビデオを追加
     new_id = YoutubeVideo.data.last[:id] + 1
-    YoutubeVideo.data << { id: new_id, title: title }
+    YoutubeVideo.data << { id: new_id, title: }
 
     # 新曲追加通知を全ユーザーに送信
     notify_all_users_about_new_song
@@ -63,14 +64,16 @@ class LineWebhooksController < ApplicationController
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
     if response.code == 200
+      puts 'メッセージが正常に送信されました！' # 成功時の処理
     else
+      puts "メッセージ送信に失敗しました。エラーコード: #{response.code}" # エラー時の処理
     end
   end
 
   # ユーザーへの通知を送信するメソッド
   def send_line_notification(line_user_profile, message)
     url = 'https://api.line.me/v2/bot/message/push'
-    
+
     # メッセージのデータ
     message_data = {
       to: line_user_profile['userId'], # 取得したユーザーIDを指定
@@ -81,7 +84,7 @@ class LineWebhooksController < ApplicationController
         }
       ]
     }
-    
+
     options = {
       headers: {
         'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
@@ -89,12 +92,14 @@ class LineWebhooksController < ApplicationController
       },
       body: message_data.to_json
     }
-    
+
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
-    
+
     if response.code == 200
+      puts 'メッセージが正常に送信されました！' # 成功時の処理
     else
+      puts "メッセージ送信に失敗しました。エラーコード: #{response.code}" # エラー時の処理
     end
   end
 

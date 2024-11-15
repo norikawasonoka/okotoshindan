@@ -70,8 +70,8 @@ class LineLoginApiController < ApplicationController
   end
 
   # ユーザー情報を保存し、ログイン状態にする
-  def handle_user_profile(line_user_id, user_name, line_user_profile)
-    user = User.find_or_initialize_by(line_user_id: line_user_id)
+  def handle_user_profile(line_user_id, user_name, _line_user_profile)
+    user = User.find_or_initialize_by(line_user_id:)
     user.name = user_name
     if user.save
       # ユーザー情報を保存できた場合、セッションにユーザーIDを格納
@@ -82,12 +82,12 @@ class LineLoginApiController < ApplicationController
       # ユーザー情報を保存できなかった場合、エラーメッセージを表示
       redirect_to root_path, notice: 'ログインに失敗しました'
     end
-  end  
+  end
 
   def add_new_video_and_notify(title)
     # 新しいビデオを追加
     new_id = YoutubeVideo.data.last[:id] + 1
-    YoutubeVideo.data << { id: new_id, title: title }
+    YoutubeVideo.data << { id: new_id, title: }
 
     # 新曲追加通知を全ユーザーに送信
     notify_all_users_about_new_song
@@ -163,11 +163,9 @@ class LineLoginApiController < ApplicationController
     url = 'https://api.line.me/v2/profile'
     response = Typhoeus.get(url, headers: { 'Authorization' => "Bearer #{access_token}" })
 
-    if response.success?
-      JSON.parse(response.body) # レスポンスのJSONを解析して返す
-    else
-      nil
-    end
+    return unless response.success?
+
+    JSON.parse(response.body) # レスポンスのJSONを解析して返す
   end
 
   # 認可コードを使ってアクセストークンを取得するメソッド
@@ -189,18 +187,16 @@ class LineLoginApiController < ApplicationController
     # アクセストークンを取得
     response = Typhoeus::Request.post(url, options)
 
-    if response.code == 200
-      JSON.parse(response.body) # アクセストークンのレスポンスを返す
-    else
-      nil
-    end
+    return unless response.code == 200
+
+    JSON.parse(response.body) # アクセストークンのレスポンスを返す
   end
 
   # ユーザーへの通知を送信するメソッド
   # ユーザーへの通知を送信するメソッド
   def send_line_notification(line_user_profile, message)
     url = 'https://api.line.me/v2/bot/message/push'
-    
+
     # メッセージのデータ
     message_data = {
       to: line_user_profile['userId'], # 取得したユーザーIDを指定
@@ -211,7 +207,7 @@ class LineLoginApiController < ApplicationController
         }
       ]
     }
-    
+
     options = {
       headers: {
         'Authorization' => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}", # 適切なアクセストークンを使用
@@ -219,12 +215,14 @@ class LineLoginApiController < ApplicationController
       },
       body: message_data.to_json
     }
-    
+
     # メッセージ送信リクエスト
     response = Typhoeus::Request.post(url, options)
-    
+
     if response.code == 200
+      puts 'メッセージが正常に送信されました！' # 成功時の処理
     else
+      puts "メッセージ送信に失敗しました。エラーコード: #{response.code}" # エラー時の処理
     end
   end
 
@@ -234,7 +232,7 @@ class LineLoginApiController < ApplicationController
     users = User.where.not(line_user_id: nil)
 
     # 各ユーザーに通知を送信
-    users.each do |user|
+    users.each do |_user|
       send_line_notification
     end
   end

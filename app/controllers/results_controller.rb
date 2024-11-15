@@ -16,13 +16,9 @@ class ResultsController < ApplicationController
     @diagnosis = @result.diagnosis
     @youtube_embed_codes = fetch_youtube_embed_codes(@result.id)
     @youtube_videos = YoutubeVideo.where(result_id: @result.id)
-  
+
     # 現在のユーザーがログインしている場合のお気に入りを取得
-    if current_user.present?
-      @favorite = current_user.favorites.find_by(result_id: @result.id)
-    else
-      @favorite = nil # ログインしていない場合はnilを設定
-    end
+    @favorite = current_user.present? ? current_user.favorites.find_by(result_id: @result.id) : nil
 
     if params[:video_id].present?
       @video = Video.find(params[:video_id]) # Videoモデルから取得
@@ -37,7 +33,7 @@ class ResultsController < ApplicationController
     # videosを favorite のカウントでグループ化し、カウントの降順でソート
     @rank = Favorite.group(:video_id).order('count(video_id) desc').pluck(:video_id)
     @ranked_videos = Video.find(@rank).sort_by { |video| -video.favorites.count }
-  end  
+  end
 
   def create
     @diagnosis = Diagnosis.find(params[:diagnosis_id])

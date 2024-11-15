@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Myapp::Application is the main application class for the Myapp Rails application.
 require_relative 'boot'
 
 require 'rails/all'

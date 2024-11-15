@@ -9,7 +9,6 @@ class StaticPagesController < ApplicationController
   def terms; end
 
   def after_login; end
-  
-  def use; end
 
+  def use; end
 end

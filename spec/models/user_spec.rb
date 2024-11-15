@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:video) { create(:video) }
-  let(:favorite) { create(:favorite, user: user, video: video) }
+  let(:favorite) { create(:favorite, user:, video:) }
 
   describe 'validations' do
     it 'is valid with a unique line_user_id' do

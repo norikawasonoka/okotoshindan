@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :favorite do
     association :user
     association :video
-    association :result  # Resultの関連付けも行う
+    association :result # Resultの関連付けも行う
   end
 end
