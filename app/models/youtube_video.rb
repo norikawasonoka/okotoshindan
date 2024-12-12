@@ -298,6 +298,30 @@ class YoutubeVideo < ActiveHash::Base
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
       </iframe>'
+    },
+    {
+      id: 26,
+      result_id: 5,
+      title: '「花変想曲」（坂本勉）',
+      description: '授業でならったことがある滝廉太郎作曲の「花」の変奏曲です。途中でワルツ風の変奏曲が挟まれるなど聞いてて楽しい曲です',
+      embed_code: '<iframe src="https://www.youtube.com/embed/ZRag3RJhGL4"
+      title="花変想曲（坂本勉）"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto ">
+      </iframe>'
+    },
+    {
+      id: 27,
+      result_id: 7,
+      title: '「カイト」箏三重奏（嵐）',
+      description: 'ゆっくりできれいな曲というのもありお箏と相性抜群です',
+      embed_code: '<iframe src="https://www.youtube.com/embed/5VHnS5Pwgbs"
+      title="カイト　箏二重奏（楽譜あり）"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube mx-auto">
+      </iframe>'
     }
   ]
 end
